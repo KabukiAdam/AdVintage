@@ -90,10 +90,10 @@
 {
     NSLog(@"Images: %f %f",((UIImage*)[[images objectAtIndex:0] objectForKey:@"image"]).size.height, ((UIImage*)[[images objectAtIndex:1] objectForKey:@"image"]).size.height);
     
-    NSLog(@"Images Before: %@", images);
+    //NSLog(@"Images Before: %@", images);
     NSSortDescriptor *sortIndex = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     [images sortUsingDescriptors:[NSArray arrayWithObject:sortIndex]];
-    NSLog(@"Images After: %@", images);
+    //NSLog(@"Images After: %@", images);
     
     UIImage *final = [[UIImage alloc] init];
     float combinedHeight = 0.0f;
@@ -149,7 +149,7 @@
             //NSLog(@"ImageNodes Count: %d",imagesNodes.count);
             for (TFHppleElement *element in imagesNodes) {
                 NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au%@",[element objectForKey:@"src"]]];
-                NSLog(@"Image: %@",imageUrl);
+                //NSLog(@"Image: %@",imageUrl);
                 
                 [self getImageFromURL:imageUrl imageIndex:index callback:^(UIImage *responseImage, NSInteger imageIndex) {
                     NSLog(@"ImageReturned: %@",responseImage);
@@ -169,7 +169,8 @@
 
 - (void)getImageFromURL:(NSURL*)url imageIndex:(NSInteger)imageIndex callback:(void (^)(UIImage *responseImage, NSInteger imageIndex))imageCallback {
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0f];
     [request setHTTPMethod:@"GET"];
     
 //    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
@@ -187,9 +188,9 @@
                                                      imageCallback(image, imageIndex);
                                                  }
                                                                                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
-                                                {
-                                                                  imageCallback(nil, imageIndex);
-                                                }];
+                                                 {
+                                                     imageCallback(nil, imageIndex);
+                                                 }];
     [requestOperation start];
 }
 

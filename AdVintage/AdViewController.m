@@ -49,7 +49,7 @@
     // start article loading
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryWomen sortBy:@"dateasc"];
     
     self.imageManager = [[SBAdImageManager alloc] init];
     self.imageManager.delegate = self;
@@ -148,7 +148,7 @@
         int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
         //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
 
-        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
+        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryWomen sortBy:@"dateasc"];
         
         // load visible images as needed
         int lowestImageToLoad = MAX(lowestRow-LOAD_IMAGE_ROW_MARGIN,0);
@@ -166,7 +166,7 @@
                         @"indexPath":indexPath,
                         @"adID":[NSString stringWithFormat:@"%d",article.articleID]
                      }];
-                    NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
+                    //NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
                 }
             }
         }
@@ -198,7 +198,7 @@
     
     //NSLog(@"scrollViewDidEndDecelerating (%d, %d)", lowestToLoad, highestToLoad);
     
-    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad) withSearchCategory:SBSearchCategoryWomen sortBy:@"dateasc"];
 }
 
 
