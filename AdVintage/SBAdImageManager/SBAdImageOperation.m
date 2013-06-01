@@ -42,16 +42,22 @@
 @end
 
 
-@implementation SBAdImageOperation {
-    BOOL finished;
-}
-@synthesize adID, finalImage, delegate, indexPath;
+@interface SBAdImageOperation ()
+
+@property (nonatomic) BOOL finished;
+
+@end
+
+@implementation SBAdImageOperation
+
+@synthesize adID, finalImage, delegate, indexPath, finished;
 
 - (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath
 {
     if( (self = [super init]) ) {
         adID = newAdID;
         indexPath = newIndexPath;
+        NSLog(@"New Operation for AdID: %@",adID);
     }
     return self;
 }
@@ -75,10 +81,7 @@
             // Wait until we're finished
             ////NSLog(@"Not Finished Yet!");
         }
-        //if (finalImage) {
-            [(NSObject*)delegate performSelectorOnMainThread:@selector(adImageOperationDidFinish:) withObject:self waitUntilDone:NO];
-        //NSLog(@"Delegate: %@", delegate);
-        //}
+        [(NSObject*)delegate performSelectorOnMainThread:@selector(adImageOperationDidFinish:) withObject:self waitUntilDone:NO];
     }
 }
 
@@ -88,6 +91,7 @@
 
 - (void)prepareAdImageFromImageArray:(NSMutableArray*)images
 {
+    NSLog(@"PrepareAdImageFromArray - Article: %@",adID);
     //NSLog(@"Images: %f %f",((UIImage*)[[images objectAtIndex:0] objectForKey:@"image"]).size.height, ((UIImage*)[[images objectAtIndex:1] objectForKey:@"image"]).size.height);
     
     //NSLog(@"Images Before: %@", images);
@@ -149,10 +153,10 @@
             ////NSLog(@"ImageNodes Count: %d",imagesNodes.count);
             for (TFHppleElement *element in imagesNodes) {
                 NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au%@",[element objectForKey:@"src"]]];
-                //NSLog(@"Image: %@",imageUrl);
+                NSLog(@"Image: %@",imageUrl);
                 
                 [self getImageFromURL:imageUrl imageIndex:index callback:^(UIImage *responseImage, NSInteger imageIndex) {
-                    //NSLog(@"ImageReturned: %@",responseImage);
+                    NSLog(@"ImageReturned AdID: %@ : %@",adID,responseImage);
                     if (responseImage == nil)
                     {
                         finished = YES;
@@ -166,6 +170,7 @@
     //});
     //});
 }
+
 
 - (void)getImageFromURL:(NSURL*)url imageIndex:(NSInteger)imageIndex callback:(void (^)(UIImage *responseImage, NSInteger imageIndex))imageCallback {
     
@@ -185,10 +190,12 @@
     AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil
                                                                                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                                                  {
+                                                     NSLog(@"Success!!!!--------------");
                                                      imageCallback(image, imageIndex);
                                                  }
                                                                                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
                                                  {
+                                                     NSLog(@"----------FAILED!!!!");
                                                      imageCallback(nil, imageIndex);
                                                  }];
     [requestOperation start];

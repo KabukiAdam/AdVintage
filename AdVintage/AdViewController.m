@@ -111,7 +111,7 @@
     
     Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
     imageView.image = article.image;
-    NSLog(@"&&&&&&&&&&&&&&&&&&&&& CONFIGURECELL WITH INDEX=%d IMAGE=%@ ARTICLE=%d",indexPath.row, imageView.image, article.articleID);
+    //NSLog(@"&&&&&&&&&&&&&&&&&&&&& CONFIGURECELL WITH INDEX=%d IMAGE=%@ ARTICLE=%d",indexPath.row, imageView.image, article.articleID);
 }
 
 
