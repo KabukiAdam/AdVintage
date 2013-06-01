@@ -9,6 +9,9 @@
 #import "ArticleLoader.h"
 #import "AFNetworking.h"
 
+#define kTroveAPIKey @"e5grvpqht7bik0gs"
+#define kPublicationID 112
+
 @implementation ArticleLoader
 
 - (id)init
@@ -29,7 +32,7 @@
     return self.articleCache[@(index)];
 }
 
-- (void)loadArticleRange:(NSRange)range
+- (void)loadArticleRange:(NSRange)range withSearchTerms:(NSArray*)searchTerms sortBy:(NSString*)sortBy
 {
     // break range into 100-size chunks
     int firstChunk = (range.location/100);
@@ -41,7 +44,15 @@
         {
             NSLog(@"Loading articles %d-%d",chunk*100, (chunk*100)+99);
             
-            NSString *urlString = [NSString stringWithFormat:@"http://api.trove.nla.gov.au/result?key=e5grvpqht7bik0gs&zone=newspaper&q=fulltext:health&reclevel=full&l-category=Advertising&l-illustrated=Y&sortby=dateasc&l-title=112&encoding=json&s=%d&n=%d",chunk*100,100];
+            NSString *searchString = [[NSString alloc] init];
+            for (NSString *searchTerm in searchTerms) {
+                if (searchString.length<1) searchString = [NSString stringWithFormat:@"&q=fulltext:%@",searchTerm];
+                else searchString = [NSString stringWithFormat:@"%@ OR fulltext:%@",searchString,searchTerm];
+            }
+            //NSLog(@"SearchString: %@",searchString);
+            
+            NSString *urlString = [NSString stringWithFormat:@"http://api.trove.nla.gov.au/result?key=%@&zone=newspaper%@&reclevel=full&l-category=Advertising&l-illustrated=Y&sortby=%@&l-title=%d&encoding=json&s=%d&n=%d",kTroveAPIKey,searchString,sortBy,kPublicationID,chunk*100,100];
+            urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             
             NSURL *url = [NSURL URLWithString:urlString];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];

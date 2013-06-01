@@ -25,6 +25,6 @@
 @property (nonatomic, readonly) int numArticles;
 
 - (Article *)getArticleByIndex:(int)index;
-- (void)loadArticleRange:(NSRange)range;
+- (void)loadArticleRange:(NSRange)range withSearchTerms:(NSArray*)searchTerms sortBy:(NSString*)sortBy;
 
 @end
