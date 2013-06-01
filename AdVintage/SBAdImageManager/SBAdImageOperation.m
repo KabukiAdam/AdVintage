@@ -80,7 +80,7 @@
         
         while (!finished) {
             // Wait until we're finished
-            ////NSLog(@"Not Finished Yet!");
+            [NSThread sleepForTimeInterval:0.1f];
         }
         [(NSObject*)delegate performSelectorOnMainThread:@selector(adImageOperationDidFinish:) withObject:self waitUntilDone:NO];
     }

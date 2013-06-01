@@ -16,7 +16,7 @@
 @end
 
 
-@interface SBAdPartialImageOperation : NSOperation  <NSURLConnectionDelegate> {
+@interface SBAdPartialImageOperation : NSOperation  <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
     __strong id <SBAdPartialImageOperationDelegate> delegate;
 }
 
