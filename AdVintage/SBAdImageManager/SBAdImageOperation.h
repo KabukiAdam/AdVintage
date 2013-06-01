@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SBAdPartialImageOperation.h"
 
 @class SBAdImageOperation;
 @protocol SBAdImageOperationDelegate <NSObject>
@@ -16,7 +17,7 @@
 @end
 
 
-@interface SBAdImageOperation : NSOperation {
+@interface SBAdImageOperation : NSOperation  <SBAdPartialImageOperationDelegate> {
     __strong id <SBAdImageOperationDelegate> delegate;
 }
 @property (nonatomic,strong) id <SBAdImageOperationDelegate> delegate;
@@ -25,6 +26,7 @@
 @property (nonatomic,strong) UIImage *finalImage;
 @property (nonatomic,strong) NSString *adID;
 @property (nonatomic,strong) NSIndexPath *indexPath;
+@property (nonatomic,strong) NSMutableArray *images;
 
 - (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath;
 

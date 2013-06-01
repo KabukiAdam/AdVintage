@@ -10,7 +10,8 @@
 #import "TFHpple.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "AFNetworking.h"
+#import "SBAdPartialImageOperation.h"
+
 
 #define kArbitraryCropHeight 25.0f
 
@@ -45,12 +46,12 @@
 @interface SBAdImageOperation ()
 
 @property (nonatomic) BOOL finished;
+@property (nonatomic) NSInteger imageCount;
 
 @end
 
 @implementation SBAdImageOperation
-
-@synthesize adID, finalImage, delegate, indexPath, finished;
+@synthesize adID, finalImage, delegate, indexPath, finished, images, imageCount;
 
 - (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath
 {
@@ -136,70 +137,39 @@
 - (void)loadImage {
     NSURL *imagesUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au/ndp/del/printArticleJpg/%@/6?print=n",adID]];
     
-    //dispatch_queue_t callerQueue = dispatch_get_main_queue();
-    //dispatch_queue_t downloadQueue = dispatch_queue_create("com.advintage.processimagequeue", NULL);
-    //dispatch_async(downloadQueue, ^{
-        NSData * imagesHtmlData = [NSData dataWithContentsOfURL:imagesUrl];
+
+    NSData * imagesHtmlData = [NSData dataWithContentsOfURL:imagesUrl];
+    
+    TFHpple *imagesParser = [TFHpple hppleWithHTMLData:imagesHtmlData];
+    
+    NSString *imagesXpathQueryString = @"//img";
+    NSArray *imagesNodes = [imagesParser searchWithXPathQuery:imagesXpathQueryString];
+    
+    images = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    NSInteger index = 0;
+    ////NSLog(@"ImageNodes Count: %d",imagesNodes.count);
+    
+    NSOperationQueue *partialsQueue = [[NSOperationQueue alloc] init];
+    [partialsQueue setMaxConcurrentOperationCount:4];
+    imageCount = imagesNodes.count;
+    
+    for (TFHppleElement *element in imagesNodes) {
+        NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au%@",[element objectForKey:@"src"]]];
+        NSLog(@"Image: %@",imageUrl);
         
-    //dispatch_async(callerQueue, ^{
-            TFHpple *imagesParser = [TFHpple hppleWithHTMLData:imagesHtmlData];
-            
-            NSString *imagesXpathQueryString = @"//img";
-            NSArray *imagesNodes = [imagesParser searchWithXPathQuery:imagesXpathQueryString];
-            
-            NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:0];
-            
-            NSInteger index = 0;
-            ////NSLog(@"ImageNodes Count: %d",imagesNodes.count);
-            for (TFHppleElement *element in imagesNodes) {
-                NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au%@",[element objectForKey:@"src"]]];
-                NSLog(@"Image: %@",imageUrl);
-                
-                [self getImageFromURL:imageUrl imageIndex:index callback:^(UIImage *responseImage, NSInteger imageIndex) {
-                    NSLog(@"ImageReturned AdID: %@ : %@",adID,responseImage);
-                    if (responseImage == nil)
-                    {
-                        finished = YES;
-                        return;
-                    }
-                    [images addObject:@{@"index":[NSNumber numberWithInteger:imageIndex],@"image":responseImage}];
-                    if (images.count == imagesNodes.count) [self prepareAdImageFromImageArray:images];
-                }];
-                index ++;
-            }
-    //});
-    //});
+        SBAdPartialImageOperation *partialImageOperation = [[SBAdPartialImageOperation alloc] initWithURL:imageUrl andIndex:index];
+        [partialImageOperation setDelegate:self];
+        [partialsQueue addOperation:partialImageOperation];
+        index ++;
+    }
 }
 
-
-- (void)getImageFromURL:(NSURL*)url imageIndex:(NSInteger)imageIndex callback:(void (^)(UIImage *responseImage, NSInteger imageIndex))imageCallback {
-    
-    //NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0f];
-    [request setHTTPMethod:@"GET"];
-    
-//    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-//        /*NSData *imageData = UIImagePNGRepresentation(image);
-//         NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"/myImage%d.png",imageIndex]];
-//         [imageData writeToFile:imagePath atomically:YES];*/
-//        imageCallback(image, imageIndex);
-//    }];
-    
-    
-    
-    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil
-                                                                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                                                 {
-                                                     NSLog(@"Success!!!!--------------");
-                                                     imageCallback(image, imageIndex);
-                                                 }
-                                                                                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
-                                                 {
-                                                     NSLog(@"----------FAILED!!!!");
-                                                     imageCallback(nil, imageIndex);
-                                                 }];
-    [requestOperation start];
+- (void)adPartialImageOperationDidFinish:(SBAdPartialImageOperation *)operation
+{
+    NSLog(@"ImageReturned AdID: %@ : %@",adID,operation.image);
+    [images addObject:@{@"index":[NSNumber numberWithInteger:operation.index],@"image":operation.image}];
+    if (images.count == imageCount) [self prepareAdImageFromImageArray:images];
 }
-
 
 @end
