@@ -32,6 +32,9 @@
 		668E7EEB1759C609000C2CBA /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EE71759C600000C2CBA /* Article.m */; };
 		668E7EEE1759C663000C2CBA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E7EEC1759C663000C2CBA /* MobileCoreServices.framework */; };
 		668E7EEF1759C663000C2CBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E7EED1759C663000C2CBA /* SystemConfiguration.framework */; };
+		668E7EF71759E7AA000C2CBA /* SBAdImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF21759E7AA000C2CBA /* SBAdImageManager.m */; };
+		668E7EF81759E7AA000C2CBA /* SBAdImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */; };
+		668E7EF91759E7AA000C2CBA /* SBPendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,12 @@
 		668E7EE91759C600000C2CBA /* ArticleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleLoader.m; sourceTree = "<group>"; };
 		668E7EEC1759C663000C2CBA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		668E7EED1759C663000C2CBA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		668E7EF11759E7AA000C2CBA /* SBAdImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdImageManager.h; sourceTree = "<group>"; };
+		668E7EF21759E7AA000C2CBA /* SBAdImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageManager.m; sourceTree = "<group>"; };
+		668E7EF31759E7AA000C2CBA /* SBAdImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdImageOperation.h; sourceTree = "<group>"; };
+		668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageOperation.m; sourceTree = "<group>"; };
+		668E7EF51759E7AA000C2CBA /* SBPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPendingOperations.h; sourceTree = "<group>"; };
+		668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPendingOperations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +138,7 @@
 		668E7EA91759A3C6000C2CBA /* AdVintage */ = {
 			isa = PBXGroup;
 			children = (
+				668E7EF01759E7AA000C2CBA /* SBAdImageManager */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
 				668E7EBB1759A3C6000C2CBA /* AdViewController.h */,
@@ -183,6 +193,19 @@
 				668E7EDC1759C5EF000C2CBA /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		668E7EF01759E7AA000C2CBA /* SBAdImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				668E7EF11759E7AA000C2CBA /* SBAdImageManager.h */,
+				668E7EF21759E7AA000C2CBA /* SBAdImageManager.m */,
+				668E7EF31759E7AA000C2CBA /* SBAdImageOperation.h */,
+				668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */,
+				668E7EF51759E7AA000C2CBA /* SBPendingOperations.h */,
+				668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */,
+			);
+			path = SBAdImageManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +289,9 @@
 				668E7EE51759C5EF000C2CBA /* UIImageView+AFNetworking.m in Sources */,
 				668E7EEA1759C606000C2CBA /* ArticleLoader.m in Sources */,
 				668E7EEB1759C609000C2CBA /* Article.m in Sources */,
+				668E7EF71759E7AA000C2CBA /* SBAdImageManager.m in Sources */,
+				668E7EF81759E7AA000C2CBA /* SBAdImageOperation.m in Sources */,
+				668E7EF91759E7AA000C2CBA /* SBPendingOperations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
