@@ -12,6 +12,12 @@
 #define kTroveAPIKey @"e5grvpqht7bik0gs"
 #define kPublicationID 112
 
+@interface ArticleLoader ()
+
+- (NSString*)searchTermsForCategory:(SBSearchCategory)searchCategory;
+
+@end
+
 @implementation ArticleLoader
 
 - (id)init
@@ -32,7 +38,7 @@
     return self.articleCache[@(index)];
 }
 
-- (void)loadArticleRange:(NSRange)range withSearchTerms:(NSArray*)searchTerms sortBy:(NSString*)sortBy
+- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy
 {
     // break range into 100-size chunks
     int firstChunk = (range.location/100);
@@ -44,12 +50,7 @@
         {
             NSLog(@"Loading articles %d-%d",chunk*100, (chunk*100)+99);
             
-            NSString *searchString = [[NSString alloc] init];
-            for (NSString *searchTerm in searchTerms) {
-                if (searchString.length<1) searchString = [NSString stringWithFormat:@"&q=fulltext:%@",searchTerm];
-                else searchString = [NSString stringWithFormat:@"%@ OR fulltext:%@",searchString,searchTerm];
-            }
-            //NSLog(@"SearchString: %@",searchString);
+            NSString *searchString = [self searchTermsForCategory:searchCategory];
             
             NSString *urlString = [NSString stringWithFormat:@"http://api.trove.nla.gov.au/result?key=%@&zone=newspaper%@&reclevel=full&l-category=Advertising&l-illustrated=Y&sortby=%@&l-title=%d&encoding=json&s=%d&n=%d",kTroveAPIKey,searchString,sortBy,kPublicationID,chunk*100,100];
             urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
@@ -84,6 +85,59 @@
         }
     }
     
+}
+
+#pragma mark - Category Search Terms
+
+- (NSString*)searchTermsForCategory:(SBSearchCategory)searchCategory
+{
+    NSArray *searchTerms;
+    switch (searchCategory) {
+        case SBSearchCategoryAlcohol:
+            searchTerms = @[@"alcohol",@"beer",@"wine",@"spirits",@"liquor"];
+            break;
+        case SBSearchCategoryChildren:
+            searchTerms = @[@"child",@"children",@"parent"];
+            break;
+        case SBSearchCategoryClassified:
+            break;
+        case SBSearchCategoryCleaning:
+            break;
+        case SBSearchCategoryClothing:
+            break;
+        case SBSearchCategoryElectronics:
+            break;
+        case SBSearchCategoryFood:
+            break;
+        case SBSearchCategoryHealth:
+            searchTerms = @[@"medicine",@"health",@"hospital",@"doctor",@"sick",@"disease",@"illness",@"sickness",@"nurse"];
+            break;
+        case SBSearchCategoryHousehold:
+            break;
+        case SBSearchCategoryMen:
+            break;
+        case SBSearchCategoryTobacco:
+            break;
+        case SBSearchCategoryTransport:
+            break;
+        case SBSearchCategoryWomen:
+            searchTerms = @[@"wife",@"housewife",@"woman",@"girl",@"marriage"];
+            break;
+        case SBSearchCategoryAll:
+            searchTerms = @[@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics",@"food",@"health",@"household",@"men",@"tobacco",@"transport",@"women"];
+            break;
+        default:
+            break;
+    }
+    
+    // 
+    NSString *searchString = [[NSString alloc] init];
+    for (NSString *searchTerm in searchTerms) {
+        if (searchString.length<1) searchString = [NSString stringWithFormat:@"&q=fulltext:%@",searchTerm];
+        else searchString = [NSString stringWithFormat:@"%@ OR fulltext:%@",searchString,searchTerm];
+    }
+    NSLog(@"SearchString: %@",searchString);
+    return searchString;
 }
 
 @end

@@ -46,7 +46,7 @@
     // start article loading
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchTerms:@[@"health",@"medicine"] sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,7 +154,7 @@
         
         int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
         //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
-        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchTerms:@[@"health",@"medicine"] sortBy:@"dateasc"];
+        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
     }
 }
 
@@ -179,7 +179,7 @@
     
     //NSLog(@"scrollViewDidEndDecelerating (%d, %d)", lowestToLoad, highestToLoad);
     
-    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad) withSearchTerms:@[@"health",@"medicine"] sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
 }
 
 

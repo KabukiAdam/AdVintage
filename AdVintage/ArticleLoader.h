@@ -9,6 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "Article.h"
 
+//food",@"health",@"household",@"men",@"tobacco",@"transport",@"women",@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics"
+
+enum {
+    SBSearchCategoryAlcohol,
+    SBSearchCategoryChildren,
+    SBSearchCategoryClassified,
+    SBSearchCategoryCleaning,
+    SBSearchCategoryClothing,
+    SBSearchCategoryElectronics,
+    SBSearchCategoryFood,
+    SBSearchCategoryHealth,
+    SBSearchCategoryHousehold,
+    SBSearchCategoryMen,
+    SBSearchCategoryTobacco,
+    SBSearchCategoryTransport,
+    SBSearchCategoryWomen,
+    SBSearchCategoryAll
+};
+typedef NSInteger SBSearchCategory;
+
 
 @protocol ArticleLoaderDelegate <NSObject>
 
@@ -25,6 +45,6 @@
 @property (nonatomic, readonly) int numArticles;
 
 - (Article *)getArticleByIndex:(int)index;
-- (void)loadArticleRange:(NSRange)range withSearchTerms:(NSArray*)searchTerms sortBy:(NSString*)sortBy;
+- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy;
 
 @end
