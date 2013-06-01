@@ -39,8 +39,8 @@
 		668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EFE1759E91B000C2CBA /* TFHppleElement.m */; };
 		668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7F001759E91B000C2CBA /* XPathQuery.m */; };
 		668E7F051759E943000C2CBA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E7F041759E943000C2CBA /* libxml2.dylib */; };
+		668E7F0C175A4483000C2CBA /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7F0B175A4483000C2CBA /* ArticleCell.m */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
-		F4307B4C175A3E5C00D1009C /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B4B175A3E5C00D1009C /* ArticleCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,10 +100,10 @@
 		668E7EFF1759E91B000C2CBA /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		668E7F001759E91B000C2CBA /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		668E7F041759E943000C2CBA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		668E7F0A175A4483000C2CBA /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
+		668E7F0B175A4483000C2CBA /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
-		F4307B4A175A3E5C00D1009C /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
-		F4307B4B175A3E5C00D1009C /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,8 @@
 				668E7F06175A1D2D000C2CBA /* Articles */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
-				F4307B4A175A3E5C00D1009C /* ArticleCell.h */,
-				F4307B4B175A3E5C00D1009C /* ArticleCell.m */,
+				668E7F0A175A4483000C2CBA /* ArticleCell.h */,
+				668E7F0B175A4483000C2CBA /* ArticleCell.m */,
 				668E7EBB1759A3C6000C2CBA /* AdViewController.h */,
 				668E7EBC1759A3C6000C2CBA /* AdViewController.m */,
 				668E7EBE1759A3C6000C2CBA /* AdViewController.xib */,
@@ -341,7 +341,7 @@
 				668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */,
 				668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */,
 				F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */,
-				F4307B4C175A3E5C00D1009C /* ArticleCell.m in Sources */,
+				668E7F0C175A4483000C2CBA /* ArticleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

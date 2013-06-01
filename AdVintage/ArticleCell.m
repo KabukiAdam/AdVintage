@@ -71,12 +71,14 @@
         return;
     }
     
-    float aspectRatio = self.imageView.image.size.width / self.imageView.image.size.height;
+    float imageAspect = self.imageView.image.size.width / self.imageView.image.size.height;
+    float cellAspect = self.bounds.size.width / self.bounds.size.height;
+    
     // larger width
-    if (aspectRatio > 1)
+    if (imageAspect > cellAspect)
     {
         float newImageWidth = self.bounds.size.width-(BORDER_WIDTH*2);
-        float newImageHeight = roundf(newImageWidth / aspectRatio);
+        float newImageHeight = roundf(newImageWidth / imageAspect);
         float newBorderWidth = self.bounds.size.width;
         float newBorderHeight = newImageHeight+(BORDER_WIDTH*2);
         
@@ -88,7 +90,7 @@
     else
     {
         float newImageHeight = self.bounds.size.height-(BORDER_WIDTH*2);
-        float newImageWidth = roundf(newImageHeight * aspectRatio);
+        float newImageWidth = roundf(newImageHeight * imageAspect);
         
         float newBorderHeight = self.bounds.size.height;
         float newBorderWidth = newImageWidth+(BORDER_WIDTH*2);
