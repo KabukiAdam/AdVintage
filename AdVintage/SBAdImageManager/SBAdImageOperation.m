@@ -78,6 +78,7 @@
             return;
         
         while (!finished) {
+            [NSThread sleepForTimeInterval:0.1];
             // Wait until we're finished
             ////NSLog(@"Not Finished Yet!");
         }
