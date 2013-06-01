@@ -36,14 +36,27 @@
         [operation setDelegate:self];
         
         [pendingOperations.downloadsInProgress setObject:operation forKey:indexPath];
+        
         [pendingOperations.downloadQueue addOperation:operation];
     }
 }
 
 
-- (void)setCurrentPriorities:(NSArray *)prioritiesArray
-{
+- (void)startImageDownloadingForAdArray:(NSArray*)adArray {
+    for (SBAdImageOperation *operation in pendingOperations.downloadQueue.operations) {
+        [operation setQueuePriority:NSOperationQueuePriorityLow];
+    }
     
+    for (NSDictionary *adDict in adArray) {
+        if (![self.pendingOperations.downloadsInProgress.allKeys containsObject:[adDict objectForKey:@"indexPath"]]) {
+            SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:[adDict objectForKey:@"adID"] atIndexPath:[adDict objectForKey:@"indexPath"]];
+            [operation setDelegate:self];
+            [operation setQueuePriority:NSOperationQueuePriorityVeryHigh];
+            
+            [pendingOperations.downloadsInProgress setObject:operation forKey:[adDict objectForKey:@"indexPath"]];
+            [pendingOperations.downloadQueue addOperation:operation];
+        }
+    }
 }
 
 - (void)adImageOperationDidFinish:(SBAdImageOperation *)operation

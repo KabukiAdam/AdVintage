@@ -18,6 +18,9 @@
 		668E7EBA1759A3C6000C2CBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EB91759A3C6000C2CBA /* Default-568h@2x.png */; };
 		668E7EBD1759A3C6000C2CBA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EBC1759A3C6000C2CBA /* ViewController.m */; };
 		668E7EC01759A3C6000C2CBA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EBE1759A3C6000C2CBA /* ViewController.xib */; };
+		F4307AF01759D6E600D1009C /* SBAdImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AEB1759D6E600D1009C /* SBAdImageManager.m */; };
+		F4307AF11759D6E600D1009C /* SBAdImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AED1759D6E600D1009C /* SBAdImageOperation.m */; };
+		F4307AF21759D6E600D1009C /* SBPendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AEF1759D6E600D1009C /* SBPendingOperations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,12 @@
 		668E7EBB1759A3C6000C2CBA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		668E7EBC1759A3C6000C2CBA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		668E7EBF1759A3C6000C2CBA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		F4307AEA1759D6E600D1009C /* SBAdImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdImageManager.h; sourceTree = "<group>"; };
+		F4307AEB1759D6E600D1009C /* SBAdImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageManager.m; sourceTree = "<group>"; };
+		F4307AEC1759D6E600D1009C /* SBAdImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdImageOperation.h; sourceTree = "<group>"; };
+		F4307AED1759D6E600D1009C /* SBAdImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageOperation.m; sourceTree = "<group>"; };
+		F4307AEE1759D6E600D1009C /* SBPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPendingOperations.h; sourceTree = "<group>"; };
+		F4307AEF1759D6E600D1009C /* SBPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPendingOperations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +92,7 @@
 		668E7EA91759A3C6000C2CBA /* AdVintage */ = {
 			isa = PBXGroup;
 			children = (
+				F4307AE91759D6E600D1009C /* SBAdImageManager */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
 				668E7EBB1759A3C6000C2CBA /* ViewController.h */,
@@ -105,6 +115,19 @@
 				668E7EB91759A3C6000C2CBA /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4307AE91759D6E600D1009C /* SBAdImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				F4307AEA1759D6E600D1009C /* SBAdImageManager.h */,
+				F4307AEB1759D6E600D1009C /* SBAdImageManager.m */,
+				F4307AEC1759D6E600D1009C /* SBAdImageOperation.h */,
+				F4307AED1759D6E600D1009C /* SBAdImageOperation.m */,
+				F4307AEE1759D6E600D1009C /* SBPendingOperations.h */,
+				F4307AEF1759D6E600D1009C /* SBPendingOperations.m */,
+			);
+			path = SBAdImageManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +199,9 @@
 				668E7EB01759A3C6000C2CBA /* main.m in Sources */,
 				668E7EB41759A3C6000C2CBA /* AppDelegate.m in Sources */,
 				668E7EBD1759A3C6000C2CBA /* ViewController.m in Sources */,
+				F4307AF01759D6E600D1009C /* SBAdImageManager.m in Sources */,
+				F4307AF11759D6E600D1009C /* SBAdImageOperation.m in Sources */,
+				F4307AF21759D6E600D1009C /* SBPendingOperations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +326,7 @@
 				668E7EC51759A3C6000C2CBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

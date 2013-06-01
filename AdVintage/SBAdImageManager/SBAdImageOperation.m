@@ -12,7 +12,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AFNetworking.h"
 
-#define kArbitraryCropHeight 35.0f
+#define kArbitraryCropHeight 25.0f
 
 @interface UIImage (Combining)
 

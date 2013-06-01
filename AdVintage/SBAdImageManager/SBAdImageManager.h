@@ -26,6 +26,13 @@
 @property (nonatomic, strong) SBPendingOperations *pendingOperations;
 
 - (void)startImageDownloadingForAdID:(NSString*)adID atIndexPath:(NSIndexPath *)indexPath;
-- (void)setCurrentPriorities:(NSArray*)prioritiesArray;
+
+/*
+    Expects an Array of NSDictionary
+    e.g.
+        NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:1];
+        [adImageManager startImageDownloadingForAdArray:@[@{@"indexPath":indexPath,@"adID":@"12345678"}]];
+*/
+- (void)startImageDownloadingForAdArray:(NSArray*)adArray;
 
 @end
