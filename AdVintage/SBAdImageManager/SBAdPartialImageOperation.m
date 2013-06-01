@@ -46,12 +46,7 @@
         
 
         while (!finished) {
-<<<<<<< HEAD
             [NSThread sleepForTimeInterval:0.1f];
-=======
-            [NSThread sleepForTimeInterval:0.1];
-
->>>>>>> 3efab8f94104d85445605e4ef24d0f11dc43478f
         }
         [(NSObject*)delegate performSelectorOnMainThread:@selector(adPartialImageOperationDidFinish:) withObject:self waitUntilDone:NO];
     }
