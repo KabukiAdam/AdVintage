@@ -21,6 +21,10 @@
 		F4307AF01759D6E600D1009C /* SBAdImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AEB1759D6E600D1009C /* SBAdImageManager.m */; };
 		F4307AF11759D6E600D1009C /* SBAdImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AED1759D6E600D1009C /* SBAdImageOperation.m */; };
 		F4307AF21759D6E600D1009C /* SBPendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307AEF1759D6E600D1009C /* SBPendingOperations.m */; };
+		F4307B411759E84900D1009C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B3C1759E84900D1009C /* TFHpple.m */; };
+		F4307B421759E84900D1009C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B3E1759E84900D1009C /* TFHppleElement.m */; };
+		F4307B431759E84900D1009C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B401759E84900D1009C /* XPathQuery.m */; };
+		F4307B461759E88C00D1009C /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4307B441759E85F00D1009C /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,13 @@
 		F4307AED1759D6E600D1009C /* SBAdImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageOperation.m; sourceTree = "<group>"; };
 		F4307AEE1759D6E600D1009C /* SBPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPendingOperations.h; sourceTree = "<group>"; };
 		F4307AEF1759D6E600D1009C /* SBPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPendingOperations.m; sourceTree = "<group>"; };
+		F4307B3B1759E84900D1009C /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		F4307B3C1759E84900D1009C /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		F4307B3D1759E84900D1009C /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		F4307B3E1759E84900D1009C /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		F4307B3F1759E84900D1009C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		F4307B401759E84900D1009C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		F4307B441759E85F00D1009C /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 				668E7EA41759A3C6000C2CBA /* UIKit.framework in Frameworks */,
 				668E7EA61759A3C6000C2CBA /* Foundation.framework in Frameworks */,
 				668E7EA81759A3C6000C2CBA /* CoreGraphics.framework in Frameworks */,
+				F4307B461759E88C00D1009C /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +94,7 @@
 		668E7EA21759A3C6000C2CBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4307B441759E85F00D1009C /* libxml2.2.dylib */,
 				668E7EA31759A3C6000C2CBA /* UIKit.framework */,
 				668E7EA51759A3C6000C2CBA /* Foundation.framework */,
 				668E7EA71759A3C6000C2CBA /* CoreGraphics.framework */,
@@ -92,6 +105,7 @@
 		668E7EA91759A3C6000C2CBA /* AdVintage */ = {
 			isa = PBXGroup;
 			children = (
+				F4307B3A1759E84900D1009C /* hpple */,
 				F4307AE91759D6E600D1009C /* SBAdImageManager */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
@@ -128,6 +142,19 @@
 				F4307AEF1759D6E600D1009C /* SBPendingOperations.m */,
 			);
 			path = SBAdImageManager;
+			sourceTree = "<group>";
+		};
+		F4307B3A1759E84900D1009C /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				F4307B3B1759E84900D1009C /* TFHpple.h */,
+				F4307B3C1759E84900D1009C /* TFHpple.m */,
+				F4307B3D1759E84900D1009C /* TFHppleElement.h */,
+				F4307B3E1759E84900D1009C /* TFHppleElement.m */,
+				F4307B3F1759E84900D1009C /* XPathQuery.h */,
+				F4307B401759E84900D1009C /* XPathQuery.m */,
+			);
+			path = hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +229,9 @@
 				F4307AF01759D6E600D1009C /* SBAdImageManager.m in Sources */,
 				F4307AF11759D6E600D1009C /* SBAdImageOperation.m in Sources */,
 				F4307AF21759D6E600D1009C /* SBPendingOperations.m in Sources */,
+				F4307B411759E84900D1009C /* TFHpple.m in Sources */,
+				F4307B421759E84900D1009C /* TFHppleElement.m in Sources */,
+				F4307B431759E84900D1009C /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
