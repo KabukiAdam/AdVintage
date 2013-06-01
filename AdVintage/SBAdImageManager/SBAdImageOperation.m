@@ -62,7 +62,7 @@
 
 - (void)main {
     @autoreleasepool {
-        NSLog(@"Main!");
+        ////NSLog(@"Main!");
         if (self.isCancelled)
             return;
                 
@@ -73,11 +73,11 @@
         
         while (!finished) {
             // Wait until we're finished
-            //NSLog(@"Not Finished Yet!");
+            ////NSLog(@"Not Finished Yet!");
         }
         //if (finalImage) {
             [(NSObject*)delegate performSelectorOnMainThread:@selector(adImageOperationDidFinish:) withObject:self waitUntilDone:NO];
-        NSLog(@"Delegate: %@", delegate);
+        //NSLog(@"Delegate: %@", delegate);
         //}
     }
 }
@@ -88,12 +88,12 @@
 
 - (void)prepareAdImageFromImageArray:(NSMutableArray*)images
 {
-    NSLog(@"Images: %f %f",((UIImage*)[[images objectAtIndex:0] objectForKey:@"image"]).size.height, ((UIImage*)[[images objectAtIndex:1] objectForKey:@"image"]).size.height);
+    //NSLog(@"Images: %f %f",((UIImage*)[[images objectAtIndex:0] objectForKey:@"image"]).size.height, ((UIImage*)[[images objectAtIndex:1] objectForKey:@"image"]).size.height);
     
-    NSLog(@"Images Before: %@", images);
+    //NSLog(@"Images Before: %@", images);
     NSSortDescriptor *sortIndex = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     [images sortUsingDescriptors:[NSArray arrayWithObject:sortIndex]];
-    NSLog(@"Images After: %@", images);
+    //NSLog(@"Images After: %@", images);
     
     UIImage *final = [[UIImage alloc] init];
     float combinedHeight = 0.0f;
@@ -107,7 +107,7 @@
     finalHeight = finalHeight * scale;
     combinedHeight = combinedHeight * scale;
     
-    NSLog(@"Final Height: %f - Combined Height: %f",finalHeight, combinedHeight);
+    //NSLog(@"Final Height: %f - Combined Height: %f",finalHeight, combinedHeight);
     
     if (finalHeight < 900) {
         // Whole image is in Image1
@@ -146,13 +146,13 @@
             NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:0];
             
             NSInteger index = 0;
-            //NSLog(@"ImageNodes Count: %d",imagesNodes.count);
+            ////NSLog(@"ImageNodes Count: %d",imagesNodes.count);
             for (TFHppleElement *element in imagesNodes) {
                 NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://trove.nla.gov.au%@",[element objectForKey:@"src"]]];
-                NSLog(@"Image: %@",imageUrl);
+                //NSLog(@"Image: %@",imageUrl);
                 
                 [self getImageFromURL:imageUrl imageIndex:index callback:^(UIImage *responseImage, NSInteger imageIndex) {
-                    NSLog(@"ImageReturned: %@",responseImage);
+                    //NSLog(@"ImageReturned: %@",responseImage);
                     if (responseImage == nil)
                     {
                         finished = YES;

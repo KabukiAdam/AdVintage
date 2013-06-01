@@ -61,13 +61,13 @@
 
 - (void)adImageOperationDidFinish:(SBAdImageOperation *)operation
 {
-    NSLog(@"AdImageOperationDidFinishWithAdID");
+    ////NSLog(@"AdImageOperationDidFinishWithAdID");
     UIImage *image = [operation finalImage];
     NSIndexPath *indexPath = [operation indexPath];
     NSString *adID = [operation adID];
     NSError *error = [operation error];
     if (error != nil) {
-        NSLog(@"Error: %d - %@", error.code, error.description);
+        ////NSLog(@"Error: %d - %@", error.code, error.description);
     } else {
         [delegate adImageManagerDidRetrieveImage:image forAdID:adID indexPath:indexPath];
         [pendingOperations.downloadsInProgress removeObjectForKey:indexPath];

@@ -153,6 +153,7 @@
 			children = (
 				668E7EFA1759E91B000C2CBA /* hpple */,
 				668E7EF01759E7AA000C2CBA /* SBAdImageManager */,
+				668E7F06175A1D2D000C2CBA /* Articles */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
 				668E7EBB1759A3C6000C2CBA /* AdViewController.h */,
@@ -160,10 +161,6 @@
 				668E7EBE1759A3C6000C2CBA /* AdViewController.xib */,
 				668E7EC61759C2DD000C2CBA /* UICollectionViewWaterfallLayout.h */,
 				668E7EC71759C2DD000C2CBA /* UICollectionViewWaterfallLayout.m */,
-				668E7EE61759C600000C2CBA /* Article.h */,
-				668E7EE71759C600000C2CBA /* Article.m */,
-				668E7EE81759C600000C2CBA /* ArticleLoader.h */,
-				668E7EE91759C600000C2CBA /* ArticleLoader.m */,
 				668E7EAA1759A3C6000C2CBA /* Supporting Files */,
 			);
 			path = AdVintage;
@@ -233,6 +230,17 @@
 				668E7F001759E91B000C2CBA /* XPathQuery.m */,
 			);
 			path = hpple;
+			sourceTree = "<group>";
+		};
+		668E7F06175A1D2D000C2CBA /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				668E7EE61759C600000C2CBA /* Article.h */,
+				668E7EE71759C600000C2CBA /* Article.m */,
+				668E7EE81759C600000C2CBA /* ArticleLoader.h */,
+				668E7EE91759C600000C2CBA /* ArticleLoader.m */,
+			);
+			name = Articles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
