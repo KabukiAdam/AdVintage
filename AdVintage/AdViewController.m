@@ -8,9 +8,9 @@
 
 #import "AdViewController.h"
 #import "SBAdImageManager.h"
+#import "ArticleCell.h"
 
-
-#define LOAD_ROW_MARGIN 100
+#define LOAD_ROW_MARGIN 50
 #define LOAD_IMAGE_ROW_MARGIN 10
 
 
@@ -29,22 +29,20 @@
     
     // create colleciton view and add it to this view
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.collectionLayout];
-    self.collectionView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     
     [self.view addSubview:self.collectionView];
     
-    [self configureCellSize];
-    
     // register for cell creation
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"AD_CELL"];
+    [self.collectionView registerClass:[ArticleCell class] forCellWithReuseIdentifier:@"AD_CELL"];
     
     // start article loading
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryHealth sortBy:@"dateasc"];
     
     self.imageManager = [[SBAdImageManager alloc] init];
     self.imageManager.delegate = self;
@@ -56,18 +54,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    
+    [self configureCellSize];
 }
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self configureCellSize];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self configureCellSize];
 }
 
 - (void)configureCellSize
 {
-    float width = roundf(self.collectionView.frame.size.width/2.0)-self.collectionLayout.minimumInteritemSpacing;
+    float width = roundf((self.collectionView.frame.size.width-self.collectionLayout.minimumInteritemSpacing)/2.0);
     float height = roundf(width*1.3);
     self.collectionLayout.itemSize = CGSizeMake(width, height);
 }
@@ -86,9 +90,9 @@
 }
 
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (ArticleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"AD_CELL" forIndexPath:indexPath];
+    ArticleCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"AD_CELL" forIndexPath:indexPath];
     
     [self configureCell:cell forIndexPath:indexPath];
     
@@ -96,22 +100,12 @@
     
 }
 
-- (void)configureCell:(UICollectionViewCell*)cell forIndexPath:(NSIndexPath*)indexPath
+- (void)configureCell:(ArticleCell*)cell forIndexPath:(NSIndexPath*)indexPath
 {
-    cell.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
-    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:1];
-    if (!imageView)
-    {
-        imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.tag = 1;
-        [cell.contentView addSubview:imageView];
-    }
-    
     Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
-    imageView.image = article.image;
-    NSLog(@"&&&&&&&&&&&&&&&&&&&&& CONFIGURECELL WITH INDEX=%d IMAGE=%@ ARTICLE=%d",indexPath.row, imageView.image, article.articleID);
+    if (article)
+        [cell configureWithArticle:article];
+    NSLog(@"&&&&&&&&&&&&&&&&&&&&& CONFIGURECELL WITH INDEX=%d ARTICLE=%d",indexPath.row, article.articleID);
 }
 
 
@@ -135,7 +129,7 @@
     int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
     //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
     
-    [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryHealth sortBy:@"dateasc"];
     
     // load visible images as needed
     int lowestImageToLoad = MAX(lowestRow-LOAD_IMAGE_ROW_MARGIN,0);
@@ -204,14 +198,14 @@
         NSRange rangeToUpdate = NSIntersectionRange(range, NSMakeRange(lowestRow, highestRow-lowestRow));
         for (int i = rangeToUpdate.location; i < rangeToUpdate.location + rangeToUpdate.length; i++)
         {
-            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+            ArticleCell *cell = (ArticleCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
             [self configureCell:cell forIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
         }
     }
 }
 
 
-#pragma mark - ArticleLoader delegate
+#pragma mark - Image Loader delegate
 - (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath
 {
     NSLog(@"---------- LOADEDIMAGE %@ (%d)", adID, indexPath.row);
@@ -221,17 +215,8 @@
     {
         article.image = image;
         
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-        UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:1];
-        if (!imageView)
-        {
-            imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
-            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            [cell.contentView addSubview:imageView];
-        }
-        
-        imageView.image = article.image;
+        ArticleCell *cell = (ArticleCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+        [cell setImage:article.image];
     }
 }
 
