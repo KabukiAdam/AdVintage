@@ -9,6 +9,7 @@
 #import "AdViewController.h"
 #import "SBAdImageManager.h"
 #import "ArticleCell.h"
+#import "AdImageCache.h"
 
 #define LOAD_ROW_MARGIN 50
 #define LOAD_IMAGE_ROW_MARGIN 10
@@ -141,14 +142,14 @@
         Article *article = [self.articleLoader getArticleByIndex:i];
         if (article)
         {
-            if (!article.image)
+            if (![AdImageCache imageIsCachedForArticleID:article.articleID])
             {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                 [imagesToLoad addObject:@{
                  @"indexPath":indexPath,
                  @"adID":[NSString stringWithFormat:@"%d",article.articleID]
                  }];
-                //NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
+                NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
             }
         }
     }
@@ -214,10 +215,10 @@
     Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
     if (article)
     {
-        article.image = image;
+        [AdImageCache cacheImage:image forArticleID:article.articleID];
         
         ArticleCell *cell = (ArticleCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-        [cell setImage:article.image];
+        [cell setImage:image];
     }
 }
 

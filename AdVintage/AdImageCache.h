@@ -10,4 +10,8 @@
 
 @interface AdImageCache : NSObject
 
++ (UIImage*)imageForArticleID:(int)articleID;
++ (void)cacheImage:(UIImage*)image forArticleID:(int)articleID;
++ (BOOL)imageIsCachedForArticleID:(int)articleID;
+
 @end

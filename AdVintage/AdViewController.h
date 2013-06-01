@@ -11,6 +11,7 @@
 #import "ArticleLoader.h"
 #import "SBAdImageManager.h"
 
+
 @interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate, SBAdImageManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

@@ -10,6 +10,8 @@
 
 #import "ArticleCell.h"
 #import "Article.h"
+#import "AdImageCache.h"
+
 
 #define BORDER_WIDTH 4
 
@@ -45,9 +47,10 @@
 
 - (void)configureWithArticle:(Article*)article
 {
-    if (article.image)
+    UIImage *image = [AdImageCache imageForArticleID:article.articleID];
+    if (image)
     {
-        self.imageView.image = article.image;
+        self.imageView.image = image;
         [self layoutImageViews];
     }
     else
