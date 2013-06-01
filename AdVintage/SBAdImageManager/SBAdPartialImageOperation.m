@@ -43,7 +43,9 @@
         if (self.isCancelled)
             return;
         
+
         while (!finished) {
+            [NSThread sleepForTimeInterval:0.1];
 
         }
         [(NSObject*)delegate performSelectorOnMainThread:@selector(adPartialImageOperationDidFinish:) withObject:self waitUntilDone:NO];

@@ -23,17 +23,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	self.view.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
+    
     // create collection layout
     self.collectionLayout = [[UICollectionViewFlowLayout alloc] init];
     
     // create colleciton view and add it to this view
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.collectionLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectInset(self.view.bounds, self.collectionLayout.minimumInteritemSpacing, 0) collectionViewLayout:self.collectionLayout];
     self.collectionView.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    
+    self.collectionView.clipsToBounds = NO;
     [self.view addSubview:self.collectionView];
     
     // register for cell creation
