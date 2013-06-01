@@ -39,6 +39,7 @@
 		668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EFE1759E91B000C2CBA /* TFHppleElement.m */; };
 		668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7F001759E91B000C2CBA /* XPathQuery.m */; };
 		668E7F051759E943000C2CBA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E7F041759E943000C2CBA /* libxml2.dylib */; };
+		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,8 @@
 		668E7EFF1759E91B000C2CBA /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		668E7F001759E91B000C2CBA /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		668E7F041759E943000C2CBA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
+		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 				668E7EF21759E7AA000C2CBA /* SBAdImageManager.m */,
 				668E7EF31759E7AA000C2CBA /* SBAdImageOperation.h */,
 				668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */,
+				F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */,
+				F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */,
 				668E7EF51759E7AA000C2CBA /* SBPendingOperations.h */,
 				668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */,
 			);
@@ -330,6 +335,7 @@
 				668E7F011759E91B000C2CBA /* TFHpple.m in Sources */,
 				668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */,
 				668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */,
+				F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
