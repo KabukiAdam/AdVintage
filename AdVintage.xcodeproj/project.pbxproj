@@ -35,6 +35,10 @@
 		668E7EF71759E7AA000C2CBA /* SBAdImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF21759E7AA000C2CBA /* SBAdImageManager.m */; };
 		668E7EF81759E7AA000C2CBA /* SBAdImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */; };
 		668E7EF91759E7AA000C2CBA /* SBPendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */; };
+		668E7F011759E91B000C2CBA /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EFC1759E91B000C2CBA /* TFHpple.m */; };
+		668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EFE1759E91B000C2CBA /* TFHppleElement.m */; };
+		668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7F001759E91B000C2CBA /* XPathQuery.m */; };
+		668E7F051759E943000C2CBA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E7F041759E943000C2CBA /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +91,13 @@
 		668E7EF41759E7AA000C2CBA /* SBAdImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdImageOperation.m; sourceTree = "<group>"; };
 		668E7EF51759E7AA000C2CBA /* SBPendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPendingOperations.h; sourceTree = "<group>"; };
 		668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPendingOperations.m; sourceTree = "<group>"; };
+		668E7EFB1759E91B000C2CBA /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		668E7EFC1759E91B000C2CBA /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		668E7EFD1759E91B000C2CBA /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		668E7EFE1759E91B000C2CBA /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		668E7EFF1759E91B000C2CBA /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		668E7F001759E91B000C2CBA /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		668E7F041759E943000C2CBA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				668E7F051759E943000C2CBA /* libxml2.dylib in Frameworks */,
 				668E7EEE1759C663000C2CBA /* MobileCoreServices.framework in Frameworks */,
 				668E7EEF1759C663000C2CBA /* SystemConfiguration.framework in Frameworks */,
 				668E7EA41759A3C6000C2CBA /* UIKit.framework in Frameworks */,
@@ -126,6 +138,7 @@
 		668E7EA21759A3C6000C2CBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				668E7F041759E943000C2CBA /* libxml2.dylib */,
 				668E7EEC1759C663000C2CBA /* MobileCoreServices.framework */,
 				668E7EED1759C663000C2CBA /* SystemConfiguration.framework */,
 				668E7EA31759A3C6000C2CBA /* UIKit.framework */,
@@ -138,6 +151,7 @@
 		668E7EA91759A3C6000C2CBA /* AdVintage */ = {
 			isa = PBXGroup;
 			children = (
+				668E7EFA1759E91B000C2CBA /* hpple */,
 				668E7EF01759E7AA000C2CBA /* SBAdImageManager */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
@@ -206,6 +220,19 @@
 				668E7EF61759E7AA000C2CBA /* SBPendingOperations.m */,
 			);
 			path = SBAdImageManager;
+			sourceTree = "<group>";
+		};
+		668E7EFA1759E91B000C2CBA /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				668E7EFB1759E91B000C2CBA /* TFHpple.h */,
+				668E7EFC1759E91B000C2CBA /* TFHpple.m */,
+				668E7EFD1759E91B000C2CBA /* TFHppleElement.h */,
+				668E7EFE1759E91B000C2CBA /* TFHppleElement.m */,
+				668E7EFF1759E91B000C2CBA /* XPathQuery.h */,
+				668E7F001759E91B000C2CBA /* XPathQuery.m */,
+			);
+			path = hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +319,9 @@
 				668E7EF71759E7AA000C2CBA /* SBAdImageManager.m in Sources */,
 				668E7EF81759E7AA000C2CBA /* SBAdImageOperation.m in Sources */,
 				668E7EF91759E7AA000C2CBA /* SBPendingOperations.m in Sources */,
+				668E7F011759E91B000C2CBA /* TFHpple.m in Sources */,
+				668E7F021759E91B000C2CBA /* TFHppleElement.m in Sources */,
+				668E7F031759E91B000C2CBA /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +372,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -367,6 +398,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
