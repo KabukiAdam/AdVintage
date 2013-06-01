@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "UICollectionViewWaterfallLayout.h"
 #import "ArticleLoader.h"
+#import "SBAdImageManager.h"
 
-
-@interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate>
+@interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate, SBAdImageManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionLayout;
 
 @property (strong, nonatomic) ArticleLoader *articleLoader;
-
+@property (strong, nonatomic) SBAdImageManager *imageManager;
 @end

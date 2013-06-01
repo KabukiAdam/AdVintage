@@ -7,8 +7,11 @@
 //
 
 #import "AdViewController.h"
+#import "SBAdImageManager.h"
+
 
 #define LOAD_ROW_MARGIN 100
+#define LOAD_IMAGE_ROW_MARGIN 10
 
 
 @interface AdViewController ()
@@ -47,6 +50,9 @@
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
     [self.articleLoader loadArticleRange:NSMakeRange(0, 100)];
+    
+    self.imageManager = [[SBAdImageManager alloc] init];
+    self.imageManager.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,49 +78,32 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *colors = @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor]];
-    
     UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"AD_CELL" forIndexPath:indexPath];
     
-//    int color = indexPath.row % 3;
-//    cell.contentView.backgroundColor = colors[color];
-    cell.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
-    
-    Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
-    if (article)
-    {
-        UILabel *label = (UILabel*)[cell.contentView viewWithTag:1];
-        if (!label)
-        {
-            int tallWide = article.articleID % 2;
-            float aspect = ((float)(article.articleID % 10) / 9.0 * 0.5) + 0.5;
-            
-            NSLog(@"aspect=%f",aspect);
-            CGSize size;
-            if (tallWide)
-                size = CGSizeMake(cell.contentView.bounds.size.width, cell.contentView.bounds.size.width*aspect);
-            else
-                size = CGSizeMake(cell.contentView.bounds.size.height*aspect, cell.contentView.bounds.size.height);
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(roundf((cell.contentView.bounds.size.width-size.width)/2), roundf((cell.contentView.bounds.size.height-size.height)/2), size.width, size.height)];
-        }
-            
-        label.tag = 1;
-        label.backgroundColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.text = [NSString stringWithFormat:@"%d",article.articleID];
-        label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:label];
-    }
+    [self configureCell:cell forIndexPath:indexPath];
     
     return cell;
     
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake(300, 300);
-//}
+- (void)configureCell:(UICollectionViewCell*)cell forIndexPath:(NSIndexPath*)indexPath
+{
+    cell.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:1];
+    if (!imageView)
+    {
+        imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [cell.contentView addSubview:imageView];
+    }
+    
+    Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
+    imageView.image = article.image;
+    NSLog(@"&&&&&&&&&&&&&&&&&&&&& CONFIGURECELL WITH IMAGE = %@",imageView.image);
+}
+
+
 
 #pragma mark - UICollectionViewWaterfallLayout delegate
 
@@ -146,15 +135,43 @@
     if (scrollView.isTracking)
     {
         int highestRow = 0;
+        int lowestRow = self.articleLoader.numArticles;
         for (NSIndexPath *path in self.collectionView.indexPathsForVisibleItems)
         {
             if (path.row > highestRow)
                 highestRow = path.row;
+            
+            if (path.row < lowestRow)
+                lowestRow = path.row;
         }
         
         int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
         //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
         [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN)];
+        
+        // load visible images as needed
+        int lowestImageToLoad = MAX(lowestRow-LOAD_IMAGE_ROW_MARGIN,0);
+        int highestImageToLoad = MIN(highestRow+LOAD_IMAGE_ROW_MARGIN, self.articleLoader.numArticles-1);
+        NSMutableArray *imagesToLoad = [NSMutableArray array];
+        for (int i=lowestImageToLoad; i <= highestImageToLoad; i++)
+        {
+            Article *article = [self.articleLoader getArticleByIndex:i];
+            if (article)
+            {
+                if (!article.image)
+                {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+                    [imagesToLoad addObject:@{
+                        @"indexPath":indexPath,
+                        @"adID":[NSString stringWithFormat:@"%d",article.articleID]
+                     }];
+                    NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
+                }
+            }
+        }
+        
+        if (imagesToLoad.count > 0)
+            [self.imageManager startImageDownloadingForAdArray:imagesToLoad];
     }
 }
 
@@ -207,37 +224,34 @@
         NSRange rangeToUpdate = NSIntersectionRange(range, NSMakeRange(lowestRow, highestRow-lowestRow));
         for (int i = rangeToUpdate.location; i < rangeToUpdate.location + rangeToUpdate.length; i++)
         {
-            Article *article = [self.articleLoader getArticleByIndex:i];
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-            UILabel *label = (UILabel*)[cell.contentView viewWithTag:1];
-            if (!label)
-            {
-                int tallWide = article.articleID % 2;
-                int bin = (article.articleID % 10);
-                float binperc = bin / 9.0;
-                float aspect = binperc * 0.5 + 0.5;
-                
-                //float aspect = ((float)(article.articleID % 10) / 9.0 * 0.5) + 0.5;
-                
-                NSLog(@"aspect=%f",aspect);
-                CGSize size;
-                if (tallWide)
-                    size = CGSizeMake(cell.contentView.bounds.size.width, cell.contentView.bounds.size.width*aspect);
-                else
-                    size = CGSizeMake(cell.contentView.bounds.size.height*aspect, cell.contentView.bounds.size.height);
-                
-                label = [[UILabel alloc] initWithFrame:CGRectMake(roundf((cell.contentView.bounds.size.width-size.width)/2), roundf((cell.contentView.bounds.size.height-size.height)/2), size.width, size.height)];
-            }
-            
-            label.tag = 1;
-            label.backgroundColor = [UIColor whiteColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = [NSString stringWithFormat:@"%d",article.articleID];
-            label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            [cell.contentView addSubview:label];
-
+            [self configureCell:cell forIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
         }
+    }
+}
+
+
+#pragma mark - ArticleLoader delegate
+- (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath
+{
+    NSLog(@"---------- LOADEDIMAGE %@ (%d)", adID, indexPath.row);
     
+    Article *article = [self.articleLoader getArticleByIndex:indexPath.row];
+    if (article)
+    {
+        article.image = image;
+        
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:1];
+        if (!imageView)
+        {
+            imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            [cell.contentView addSubview:imageView];
+        }
+        
+        imageView.image = article.image;
     }
 }
 

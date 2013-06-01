@@ -152,7 +152,12 @@
                 NSLog(@"Image: %@",imageUrl);
                 
                 [self getImageFromURL:imageUrl imageIndex:index callback:^(UIImage *responseImage, NSInteger imageIndex) {
-                    NSLog(@"Image: %@",responseImage);
+                    NSLog(@"ImageReturned: %@",responseImage);
+                    if (responseImage == nil)
+                    {
+                        finished = YES;
+                        return;
+                    }
                     [images addObject:@{@"index":[NSNumber numberWithInteger:imageIndex],@"image":responseImage}];
                     if (images.count == imagesNodes.count) [self prepareAdImageFromImageArray:images];
                 }];
@@ -167,13 +172,24 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     
-    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-        /*NSData *imageData = UIImagePNGRepresentation(image);
-         NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"/myImage%d.png",imageIndex]];
-         [imageData writeToFile:imagePath atomically:YES];*/
-        imageCallback(image, imageIndex);
-    }];
+//    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
+//        /*NSData *imageData = UIImagePNGRepresentation(image);
+//         NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"/myImage%d.png",imageIndex]];
+//         [imageData writeToFile:imagePath atomically:YES];*/
+//        imageCallback(image, imageIndex);
+//    }];
     
+    
+    
+    AFImageRequestOperation *requestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil
+                                                                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+                                                 {
+                                                     imageCallback(image, imageIndex);
+                                                 }
+                                                                                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
+                                                {
+                                                                  imageCallback(nil, imageIndex);
+                                                }];
     [requestOperation start];
 }
 

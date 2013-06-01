@@ -17,5 +17,6 @@
 @property (nonatomic, assign) int       titleID;
 @property (nonatomic, copy)   NSString  *date;
 @property (nonatomic, copy)   NSString  *snippet;
+@property (nonatomic, strong) UIImage   *image;
 
 @end
