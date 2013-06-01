@@ -49,7 +49,7 @@
     // start article loading
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100)];
+    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
     
     self.imageManager = [[SBAdImageManager alloc] init];
     self.imageManager.delegate = self;
@@ -147,7 +147,8 @@
         
         int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
         //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
-        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN)];
+
+        [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
         
         // load visible images as needed
         int lowestImageToLoad = MAX(lowestRow-LOAD_IMAGE_ROW_MARGIN,0);
@@ -172,6 +173,7 @@
         
         if (imagesToLoad.count > 0)
             [self.imageManager startImageDownloadingForAdArray:imagesToLoad];
+        
     }
 }
 
@@ -196,7 +198,7 @@
     
     //NSLog(@"scrollViewDidEndDecelerating (%d, %d)", lowestToLoad, highestToLoad);
     
-    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad)];
+    [self.articleLoader loadArticleRange:NSMakeRange(lowestToLoad, highestToLoad-lowestToLoad) withSearchCategory:SBSearchCategoryAll sortBy:@"dateasc"];
 }
 
 
