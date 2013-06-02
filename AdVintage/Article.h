@@ -18,6 +18,7 @@
 @property (nonatomic, copy)   NSString  *date;
 @property (nonatomic, copy)   NSString  *snippet;
 
+- (NSDictionary*)getDictionary;
 - (NSString*)getNiceDate;
 
 @end

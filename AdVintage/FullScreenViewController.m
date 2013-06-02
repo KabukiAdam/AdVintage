@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Article.h"
 #import "AdImageCache.h"
+#import "FavoritesManager.h"
 
 #define BORDER_WIDTH 2
 
@@ -31,7 +32,6 @@
     if (self) {
         // Custom initialization
         _article = newArticle;
-        
     }
     return self;
 }
@@ -65,6 +65,8 @@
     _swipeRec = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(toggleInfoView:)];
     [_swipeRec setDirection:UISwipeGestureRecognizerDirectionDown];
     [_infoView addGestureRecognizer:self.swipeRec];
+    
+    _favButton.selected = [[FavoritesManager sharedInstance] isFavoriteArticle:_article];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,6 +107,11 @@
 
 - (IBAction)toggleFave:(UIButton *)sender {
     sender.selected = !sender.selected;
+    
+    if (sender.selected)
+        [[FavoritesManager sharedInstance] favoriteArticle:self.article];
+    else
+        [[FavoritesManager sharedInstance] unfavoriteArticle:self.article];
 }
 
 /*- (IBAction)shareToFacebook:(id)sender {

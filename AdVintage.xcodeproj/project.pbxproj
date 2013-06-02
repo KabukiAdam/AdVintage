@@ -122,6 +122,7 @@
 		66C5D6D9175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D6175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf */; };
 		66C5D6DA175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D7175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf */; };
 		66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */; };
+		66C5D6DF175B0D8F00B64B8D /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C5D6DE175B0D8F00B64B8D /* FavoritesManager.m */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
 		F4B7A51A175AE39D008B65BF /* FullScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A519175AE39D008B65BF /* FullScreenViewController.xib */; };
 		F4B7A521175B099A008B65BF /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51B175B099A008B65BF /* Default-Landscape.png */; };
@@ -283,6 +284,8 @@
 		66C5D6D6175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Bold.ttf"; sourceTree = "<group>"; };
 		66C5D6D7175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Regular.ttf"; sourceTree = "<group>"; };
 		66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		66C5D6DD175B0D8F00B64B8D /* FavoritesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesManager.h; sourceTree = "<group>"; };
+		66C5D6DE175B0D8F00B64B8D /* FavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesManager.m; sourceTree = "<group>"; };
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
 		F4B7A519175AE39D008B65BF /* FullScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenViewController.xib; sourceTree = "<group>"; };
@@ -347,10 +350,10 @@
 		668E7EA91759A3C6000C2CBA /* AdVintage */ = {
 			isa = PBXGroup;
 			children = (
+				66C5D5A4175ACA0C00B64B8D /* James Code */,
 				668E7EFA1759E91B000C2CBA /* hpple */,
 				668E7EF01759E7AA000C2CBA /* SBAdImageManager */,
 				668E7F06175A1D2D000C2CBA /* Articles */,
-				66C5D5A4175ACA0C00B64B8D /* James Code */,
 				668E7EB21759A3C6000C2CBA /* AppDelegate.h */,
 				668E7EB31759A3C6000C2CBA /* AppDelegate.m */,
 				668E7F0A175A4483000C2CBA /* ArticleCell.h */,
@@ -365,6 +368,8 @@
 				668E7EC71759C2DD000C2CBA /* UICollectionViewWaterfallLayout.m */,
 				66C5D5D4175ACBE500B64B8D /* UtilClass.h */,
 				66C5D5D5175ACBE500B64B8D /* UtilClass.m */,
+				66C5D6DD175B0D8F00B64B8D /* FavoritesManager.h */,
+				66C5D6DE175B0D8F00B64B8D /* FavoritesManager.m */,
 				66C5D5DE175ACBEB00B64B8D /* Resources */,
 				668E7EAA1759A3C6000C2CBA /* Supporting Files */,
 			);
@@ -734,6 +739,7 @@
 				66C5D5DB175ACBE500B64B8D /* Spinner.m in Sources */,
 				66C5D5DC175ACBE500B64B8D /* UtilClass.m in Sources */,
 				66C5D5DD175ACBE500B64B8D /* ViewController.m in Sources */,
+				66C5D6DF175B0D8F00B64B8D /* FavoritesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

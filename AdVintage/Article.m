@@ -27,6 +27,15 @@
     return self;
 }
 
+- (NSDictionary*)getDictionary
+{
+    NSDictionary *dictionary = @{@"id": @(self.articleID),
+                                 @"title" : @{ @"value":self.title, @"id":@(self.titleID) },
+                                 @"date" : self.date,
+                                 @"snippet" : self.snippet};
+    return dictionary;
+}
+
 - (NSString*)getNiceDate
 {
     NSString *str = self.date;
