@@ -17,5 +17,6 @@
 
 - (void)favoriteArticle:(Article *)article;
 - (void)unfavoriteArticle:(Article *)article;
+- (BOOL)isFavoriteArticle:(Article*)article;
 
 @end

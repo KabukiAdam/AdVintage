@@ -22,6 +22,7 @@ static FavoritesManager *sharedObject = nil;
     dispatch_once(&_singletonPredicate, ^{
         sharedObject = [[super allocWithZone:nil] init];
         sharedObject.favoriteArticles = [NSMutableDictionary dictionary];
+        [sharedObject loadFavorites];
     });
     
     return sharedObject;
@@ -39,6 +40,11 @@ static FavoritesManager *sharedObject = nil;
     [self saveFavorites];
 }
 
+- (BOOL)isFavoriteArticle:(Article*)article
+{
+    return ([self.favoriteArticles objectForKey:@(article.articleID)] != nil);
+}
+
 - (void)loadFavorites
 {
     NSArray *favArray = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY];
@@ -53,12 +59,14 @@ static FavoritesManager *sharedObject = nil;
 - (void)saveFavorites
 {
     NSMutableArray *prefArray = [NSMutableArray array];
-    for (Article *article in self.favoriteArticles)
+    for (NSNumber *artID in self.favoriteArticles)
     {
+        Article *article = self.favoriteArticles[artID];
         NSDictionary *artDict = [article getDictionary];
         [prefArray addObject:artDict];
     }
     [[NSUserDefaults standardUserDefaults] setObject:prefArray forKey:FAVORITES_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

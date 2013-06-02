@@ -26,7 +26,7 @@
 @property (nonatomic, weak)     id<ArticleLoaderDelegate>   delegate;
 @property (nonatomic, readonly) NSMutableDictionary *articleCache;
 @property (nonatomic, readonly) NSMutableSet *pendingChunks;
-@property (nonatomic, readonly) int numArticles;
+@property (nonatomic, assign) int numArticles;
 
 - (Article *)getArticleByIndex:(int)index;
 - (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy contextID:(int)contextID;

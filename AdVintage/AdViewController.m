@@ -14,7 +14,7 @@
 #import "UtilClass.h"
 #import "MenuViewController.h"
 #import "KSCustomPopoverBackgroundView.h"
-
+#import "FavoritesManager.h"
 
 #define LOAD_ROW_MARGIN 50
 #define LOAD_IMAGE_ROW_MARGIN 10
@@ -111,10 +111,28 @@
     
     [self resizeMenuButton];
     
-    [self.articleLoader emptyArticles];
-    [self.collectionView reloadData];
-    
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:self.currentCategory sortBy:@"dateasc" contextID:self.contextID];
+    if (self.currentCategory != SBSearchCategoryFavourites)
+    {
+        [self.articleLoader emptyArticles];
+        [self.collectionView reloadData];
+        
+        [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:self.currentCategory sortBy:@"dateasc" contextID:self.contextID];
+    }
+    else
+    {
+        [self.articleLoader emptyArticles];
+        
+        int index=0;
+        for (NSNumber *artID in [FavoritesManager sharedInstance].favoriteArticles)
+        {
+            Article *article = [[FavoritesManager sharedInstance].favoriteArticles objectForKey:artID];
+            [self.articleLoader.articleCache setObject:article forKey:@(index)];
+            
+            index++;
+        }
+        self.articleLoader.numArticles = index;
+        [self.collectionView reloadData];
+    }
 }
 
 -(void)resizeMenuButton
