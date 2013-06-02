@@ -10,6 +10,7 @@
 #import "SBAdImageManager.h"
 #import "ArticleCell.h"
 #import "AdImageCache.h"
+#import "FullScreenViewController.h"
 
 #define LOAD_ROW_MARGIN 50
 #define LOAD_IMAGE_ROW_MARGIN 10
@@ -36,7 +37,10 @@
     self.collectionView.dataSource = self;
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView.clipsToBounds = NO;
+    [self.collectionView setAllowsSelection:YES];
     [self.view addSubview:self.collectionView];
+    
+    
     
     // register for cell creation
     [self.collectionView registerClass:[ArticleCell class] forCellWithReuseIdentifier:@"AD_CELL"];
@@ -76,6 +80,14 @@
     float width = roundf((self.collectionView.frame.size.width-self.collectionLayout.minimumInteritemSpacing)/2.0);
     float height = roundf(width*1.3);
     self.collectionLayout.itemSize = CGSizeMake(width, height);
+}
+
+#pragma mark - UICollectionViewDelegate Methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    FullScreenViewController *fullScreenViewController = [[FullScreenViewController alloc] initWithNibName:@"FullScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:fullScreenViewController animated:YES];
 }
 
 
