@@ -124,6 +124,12 @@
 		66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
 		F4B7A51A175AE39D008B65BF /* FullScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A519175AE39D008B65BF /* FullScreenViewController.xib */; };
+		F4B7A521175B099A008B65BF /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51B175B099A008B65BF /* Default-Landscape.png */; };
+		F4B7A522175B099A008B65BF /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51C175B099A008B65BF /* Default-Landscape@2x.png */; };
+		F4B7A523175B099A008B65BF /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51D175B099A008B65BF /* Default-Portrait.png */; };
+		F4B7A524175B099A008B65BF /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51E175B099A008B65BF /* Default-Portrait@2x.png */; };
+		F4B7A525175B099A008B65BF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A51F175B099A008B65BF /* Icon.png */; };
+		F4B7A526175B099A008B65BF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A520175B099A008B65BF /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,6 +286,12 @@
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
 		F4B7A519175AE39D008B65BF /* FullScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenViewController.xib; sourceTree = "<group>"; };
+		F4B7A51B175B099A008B65BF /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
+		F4B7A51C175B099A008B65BF /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
+		F4B7A51D175B099A008B65BF /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
+		F4B7A51E175B099A008B65BF /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
+		F4B7A51F175B099A008B65BF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		F4B7A520175B099A008B65BF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +472,12 @@
 		66C5D5DE175ACBEB00B64B8D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F4B7A51B175B099A008B65BF /* Default-Landscape.png */,
+				F4B7A51C175B099A008B65BF /* Default-Landscape@2x.png */,
+				F4B7A51D175B099A008B65BF /* Default-Portrait.png */,
+				F4B7A51E175B099A008B65BF /* Default-Portrait@2x.png */,
+				F4B7A51F175B099A008B65BF /* Icon.png */,
+				F4B7A520175B099A008B65BF /* Icon@2x.png */,
 				66C5D6D5175AD6BE00B64B8D /* NixieOne-Regular.otf */,
 				66C5D6D6175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf */,
 				66C5D6D7175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf */,
@@ -670,6 +688,12 @@
 				66C5D6DA175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */,
 				66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */,
 				F4B7A51A175AE39D008B65BF /* FullScreenViewController.xib in Resources */,
+				F4B7A521175B099A008B65BF /* Default-Landscape.png in Resources */,
+				F4B7A522175B099A008B65BF /* Default-Landscape@2x.png in Resources */,
+				F4B7A523175B099A008B65BF /* Default-Portrait.png in Resources */,
+				F4B7A524175B099A008B65BF /* Default-Portrait@2x.png in Resources */,
+				F4B7A525175B099A008B65BF /* Icon.png in Resources */,
+				F4B7A526175B099A008B65BF /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
