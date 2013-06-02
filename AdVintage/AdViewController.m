@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.currentCategory = SBSearchCategoryAll;
+    self.currentCategory = -1;
     self.contextID = 0;
     
 	self.view.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
@@ -61,7 +61,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeCategoryNotification:) name:@"changeCategory" object:nil];
     
-    [self changeCategory:self.currentCategory];
+    [self changeCategory:SBSearchCategoryAll];
 }
 
 - (void)didReceiveMemoryWarning
