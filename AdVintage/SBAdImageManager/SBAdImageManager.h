@@ -13,7 +13,7 @@
 @class SBAdImageManager;
 @protocol SBAdImageManagerDelegate <NSObject>
 @required
-- (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath;
+- (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath contextID:(NSInteger)contextID;
 @end
 
 
