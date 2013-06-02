@@ -10,7 +10,7 @@
 
 @class Article;
 
-@interface ArticleCell : UICollectionReusableView
+@interface ArticleCell : UICollectionViewCell
 
 @property (strong, nonatomic) UIView *borderView;
 @property (strong, nonatomic) UIImageView *imageView;

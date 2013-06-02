@@ -16,8 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *titleBarView;
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
-@property (strong, nonatomic) UICollectionView *collectionView;
-@property (strong, nonatomic) UICollectionViewFlowLayout *collectionLayout;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionLayout;
 
 - (IBAction)buttonPressedCategory:(id)sender;
 @property (strong, nonatomic) ArticleLoader *articleLoader;

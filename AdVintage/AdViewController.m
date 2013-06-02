@@ -27,20 +27,14 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
     
-    // create collection layout
-    self.collectionLayout = [[UICollectionViewFlowLayout alloc] init];
-    
+   
     // create colleciton view and add it to this view
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectInset(self.view.bounds, self.collectionLayout.minimumInteritemSpacing, 0) collectionViewLayout:self.collectionLayout];
+    //self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectInset(self.view.bounds, self.collectionLayout.minimumInteritemSpacing, 0) collectionViewLayout:self.collectionLayout];
     self.collectionView.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+    [self.collectionView setUserInteractionEnabled:YES];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView.clipsToBounds = NO;
     [self.collectionView setAllowsSelection:YES];
-    [self.view addSubview:self.collectionView];
-    [self.view sendSubviewToBack:self.collectionView];
-    
     
     
     // register for cell creation
@@ -92,8 +86,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FullScreenViewController *fullScreenViewController = [[FullScreenViewController alloc] initWithNibName:@"FullScreenViewController" bundle:nil];
-    [self.navigationController pushViewController:fullScreenViewController animated:YES];
+    NSLog(@"Did Select Item");
+    [self setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    FullScreenViewController *fullScreenViewController = [[FullScreenViewController alloc] initWithNibName:@"FullScreenViewController" bundle:nil withArticle:[self.articleLoader getArticleByIndex:indexPath.row]];
+    [self presentViewController:fullScreenViewController animated:YES completion:nil];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Should Touch!");
+    return YES;
 }
 
 
@@ -115,9 +117,9 @@
     ArticleCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"AD_CELL" forIndexPath:indexPath];
     
     [self configureCell:cell forIndexPath:indexPath];
+    //cell.contentView.backgroundColor = [UIColor blackColor];
     
     return cell;
-    
 }
 
 - (void)configureCell:(ArticleCell*)cell forIndexPath:(NSIndexPath*)indexPath

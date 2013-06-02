@@ -27,4 +27,23 @@
     return self;
 }
 
+- (NSString*)getNiceDate
+{
+    NSString *str = self.date;
+    NSDateFormatter *fromStringformatter = [[NSDateFormatter alloc]init];
+    [fromStringformatter setDateFormat:@"yyyy-MM-dd"];
+    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    [fromStringformatter setTimeZone:gmt];
+    NSDate *date = [fromStringformatter dateFromString:str];
+    
+    
+    NSDateFormatter *toStringformatter = [[NSDateFormatter alloc] init];
+    [toStringformatter setDateFormat:@"dd MMMM yyyy"];
+    
+    //Optionally for time zone converstions
+    //[toStringformatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    
+    return [toStringformatter stringFromDate:date];
+}
+
 @end
