@@ -209,6 +209,16 @@
 
 #pragma mark - Interface Orientation
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self layoutImageViews];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    
+}
+
 #pragma mark - Cleanup
 
 - (void)didReceiveMemoryWarning
