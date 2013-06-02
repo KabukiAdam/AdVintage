@@ -207,6 +207,8 @@
     }
 }
 
+#pragma mark - Interface Orientation
+
 #pragma mark - Cleanup
 
 - (void)didReceiveMemoryWarning
