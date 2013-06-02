@@ -25,6 +25,7 @@
 @property (assign, nonatomic) SBSearchCategory currentCategory;
 
 @property (assign, nonatomic) int contextID;
+@property (assign, nonatomic) int lastScrollBlock;
 
 - (IBAction)buttonPressedCategory:(id)sender;
 

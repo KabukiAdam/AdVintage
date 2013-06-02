@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     self.currentCategory = -1;
+    self.lastScrollBlock = -1;
     self.contextID = 0;
     
 	self.view.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
@@ -213,6 +214,12 @@
 
 - (void)handleScrollPositionUpdate
 {
+    int scrollBlock = self.collectionView.contentOffset.y / 768;
+    if (scrollBlock == self.lastScrollBlock)
+        return;
+    
+    self.lastScrollBlock = scrollBlock;
+    
     int highestRow = 0;
     int lowestRow = self.articleLoader.numArticles;
     for (NSIndexPath *path in self.collectionView.indexPathsForVisibleItems)
