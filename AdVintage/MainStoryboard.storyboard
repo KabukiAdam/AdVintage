@@ -774,16 +774,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cola.jpg" width="450" height="565"/>
-        <image name="cross.png" width="44" height="44"/>
-        <image name="facebook_icon.png" width="44" height="44"/>
-        <image name="grabber.png" width="44" height="44"/>
+        <image name="cola.jpg" width="16" height="16"/>
+        <image name="cross.png" width="16" height="16"/>
+        <image name="facebook_icon.png" width="16" height="16"/>
+        <image name="grabber.png" width="16" height="16"/>
         <image name="justads_gap.jpg" width="1536" height="2048"/>
-        <image name="logo.png" width="260" height="114"/>
-        <image name="menu_arrow.png" width="10" height="10"/>
-        <image name="star_icon_orange.png" width="44" height="44"/>
-        <image name="star_icon_white.png" width="44" height="44"/>
-        <image name="twitter_icon.png" width="44" height="44"/>
+        <image name="logo.png" width="16" height="16"/>
+        <image name="menu_arrow.png" width="16" height="16"/>
+        <image name="star_icon_orange.png" width="16" height="16"/>
+        <image name="star_icon_white.png" width="16" height="16"/>
+        <image name="twitter_icon.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>

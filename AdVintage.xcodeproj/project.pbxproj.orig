@@ -668,8 +668,11 @@
 				66C5D6D8175AD6BE00B64B8D /* NixieOne-Regular.otf in Resources */,
 				66C5D6D9175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */,
 				66C5D6DA175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */,
+<<<<<<< HEAD
 				66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */,
+=======
 				F4B7A51A175AE39D008B65BF /* FullScreenViewController.xib in Resources */,
+>>>>>>> ae1c6101473d4d6b70c9af1d9e1e31cc89f0dc99
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

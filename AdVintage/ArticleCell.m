@@ -22,16 +22,13 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        //self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
         self.autoresizesSubviews = YES;
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowOffset = CGSizeMake(0, 1);
         self.layer.shadowRadius = 3.0;
         self.layer.shadowOpacity = 0.6;
         
-        
         CGRect bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        
         self.borderView = [[UIView alloc] initWithFrame:bounds];
         self.borderView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         self.borderView.autoresizesSubviews = YES;
