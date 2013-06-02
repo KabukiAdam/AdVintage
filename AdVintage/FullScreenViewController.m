@@ -12,14 +12,7 @@
 
 
 @interface FullScreenViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *pubLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
-@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
-@property (weak, nonatomic) IBOutlet UIButton *faveBtn;
-@property (weak, nonatomic) IBOutlet UIView *infoView;
+
 @property (nonatomic) BOOL infoMinimised;
 @property (nonatomic, strong) UISwipeGestureRecognizer *swipeRec;
 @property (nonatomic, strong) SLComposeViewController *SLComposerSheet;
@@ -43,13 +36,14 @@
 	
     self.view.backgroundColor = BEIGE;
     
-    self.imageView.layer.borderColor = [[UIColor whiteColor]CGColor];
-    self.imageView.layer.borderWidth = 5;
-    self.imageView.layer.shadowOpacity = 0.8;
-    self.imageView.layer.shadowRadius = 2.0;
-    self.imageView.layer.shadowOffset = CGSizeMake(0, 1.0);
-    self.imageView.layer.cornerRadius = 4;
+    _mainImageView.layer.borderColor = [[UIColor whiteColor]CGColor];
+    _mainImageView.layer.borderWidth = 5;
+    _mainImageView.layer.shadowOpacity = 0.8;
+    _mainImageView.layer.shadowRadius = 2.0;
+    _mainImageView.layer.shadowOffset = CGSizeMake(0, 1.0);
+    _mainImageView.layer.cornerRadius = 4;
     
+    /*
     self.pubLabel.font = [UtilClass appFontWithSize:36];
     self.stateLabel.font = [UtilClass appFontWithSize:24];
     self.dateLabel.font = [UtilClass appFontWithSize:24];
@@ -57,7 +51,7 @@
     self.pubLabel.text = @"The Mercury";
     self.stateLabel.text = @"Tasmania";
     self.dateLabel.text = @"14 February 1952";
-    
+    */
     
     self.swipeRec = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(toggleInfoView)];
     [self.swipeRec setDirection:UISwipeGestureRecognizerDirectionDown];

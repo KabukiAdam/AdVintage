@@ -13,6 +13,9 @@
 		668E7EAE1759A3C6000C2CBA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EAC1759A3C6000C2CBA /* InfoPlist.strings */; };
 		668E7EB01759A3C6000C2CBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EAF1759A3C6000C2CBA /* main.m */; };
 		668E7EB41759A3C6000C2CBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EB31759A3C6000C2CBA /* AppDelegate.m */; };
+		668E7EB61759A3C6000C2CBA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EB51759A3C6000C2CBA /* Default.png */; };
+		668E7EB81759A3C6000C2CBA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EB71759A3C6000C2CBA /* Default@2x.png */; };
+		668E7EBA1759A3C6000C2CBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EB91759A3C6000C2CBA /* Default-568h@2x.png */; };
 		668E7EBD1759A3C6000C2CBA /* AdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EBC1759A3C6000C2CBA /* AdViewController.m */; };
 		668E7EC01759A3C6000C2CBA /* AdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 668E7EBE1759A3C6000C2CBA /* AdViewController.xib */; };
 		668E7EC81759C488000C2CBA /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 668E7EC71759C2DD000C2CBA /* UICollectionViewWaterfallLayout.m */; };
@@ -118,10 +121,8 @@
 		66C5D6CC175AD01400B64B8D /* twitter_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D684175AD01400B64B8D /* twitter_icon@2x.png */; };
 		66C5D6CD175AD01400B64B8D /* vert_divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D685175AD01400B64B8D /* vert_divider.png */; };
 		66C5D6CE175AD01400B64B8D /* vert_divider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D686175AD01400B64B8D /* vert_divider@2x.png */; };
-		66C5D6D2175AD59600B64B8D /* NixieOne-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6CF175AD59600B64B8D /* NixieOne-Regular.otf */; };
-		66C5D6D3175AD59600B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D0175AD59600B64B8D /* OleoScriptSwashCaps-Bold.ttf */; };
-		66C5D6D4175AD59600B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D1175AD59600B64B8D /* OleoScriptSwashCaps-Regular.ttf */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
+		F4B7A516175AD42E008B65BF /* FullScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,11 +272,9 @@
 		66C5D684175AD01400B64B8D /* twitter_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter_icon@2x.png"; path = "Images/twitter_icon@2x.png"; sourceTree = "<group>"; };
 		66C5D685175AD01400B64B8D /* vert_divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vert_divider.png; path = Images/vert_divider.png; sourceTree = "<group>"; };
 		66C5D686175AD01400B64B8D /* vert_divider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vert_divider@2x.png"; path = "Images/vert_divider@2x.png"; sourceTree = "<group>"; };
-		66C5D6CF175AD59600B64B8D /* NixieOne-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NixieOne-Regular.otf"; sourceTree = "<group>"; };
-		66C5D6D0175AD59600B64B8D /* OleoScriptSwashCaps-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Bold.ttf"; sourceTree = "<group>"; };
-		66C5D6D1175AD59600B64B8D /* OleoScriptSwashCaps-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Regular.ttf"; sourceTree = "<group>"; };
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
+		F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +341,9 @@
 				668E7EBB1759A3C6000C2CBA /* AdViewController.h */,
 				668E7EBC1759A3C6000C2CBA /* AdViewController.m */,
 				668E7EBE1759A3C6000C2CBA /* AdViewController.xib */,
+				66C5D5CC175ACBE500B64B8D /* FullScreenViewController.h */,
+				66C5D5CD175ACBE500B64B8D /* FullScreenViewController.m */,
+				F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */,
 				668E7EC61759C2DD000C2CBA /* UICollectionViewWaterfallLayout.h */,
 				668E7EC71759C2DD000C2CBA /* UICollectionViewWaterfallLayout.m */,
 				66C5D5DE175ACBEB00B64B8D /* Resources */,
@@ -435,8 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				66C5D63D175ACD7200B64B8D /* MainStoryboard.storyboard */,
-				66C5D5CC175ACBE500B64B8D /* FullScreenViewController.h */,
-				66C5D5CD175ACBE500B64B8D /* FullScreenViewController.m */,
 				66C5D5CE175ACBE500B64B8D /* KSCustomPopoverBackgroundView.h */,
 				66C5D5CF175ACBE500B64B8D /* KSCustomPopoverBackgroundView.m */,
 				66C5D5D0175ACBE500B64B8D /* MenuViewController.h */,
@@ -454,9 +454,6 @@
 		66C5D5DE175ACBEB00B64B8D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				66C5D6CF175AD59600B64B8D /* NixieOne-Regular.otf */,
-				66C5D6D0175AD59600B64B8D /* OleoScriptSwashCaps-Bold.ttf */,
-				66C5D6D1175AD59600B64B8D /* OleoScriptSwashCaps-Regular.ttf */,
 				66C5D63F175AD01400B64B8D /* caticon_alcohol.png */,
 				66C5D640175AD01400B64B8D /* caticon_alcohol@2x.png */,
 				66C5D641175AD01400B64B8D /* caticon_all_categories.png */,
@@ -585,6 +582,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				668E7EAE1759A3C6000C2CBA /* InfoPlist.strings in Resources */,
+				668E7EB61759A3C6000C2CBA /* Default.png in Resources */,
+				668E7EB81759A3C6000C2CBA /* Default@2x.png in Resources */,
+				668E7EBA1759A3C6000C2CBA /* Default-568h@2x.png in Resources */,
 				668E7EC01759A3C6000C2CBA /* AdViewController.xib in Resources */,
 				66C5D63E175ACD7200B64B8D /* MainStoryboard.storyboard in Resources */,
 				66C5D687175AD01400B64B8D /* caticon_alcohol.png in Resources */,
@@ -659,9 +659,7 @@
 				66C5D6CC175AD01400B64B8D /* twitter_icon@2x.png in Resources */,
 				66C5D6CD175AD01400B64B8D /* vert_divider.png in Resources */,
 				66C5D6CE175AD01400B64B8D /* vert_divider@2x.png in Resources */,
-				66C5D6D2175AD59600B64B8D /* NixieOne-Regular.otf in Resources */,
-				66C5D6D3175AD59600B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */,
-				66C5D6D4175AD59600B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */,
+				F4B7A516175AD42E008B65BF /* FullScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
