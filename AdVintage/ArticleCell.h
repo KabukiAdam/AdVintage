@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UIView *borderView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 - (void)configureWithArticle:(Article*)article;
 - (void)setImage:(UIImage*)image;
