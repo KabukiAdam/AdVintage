@@ -94,6 +94,7 @@
 		66C5D639175ACC1400B64B8D /* vert_divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D60B175ACC1400B64B8D /* vert_divider.png */; };
 		66C5D63A175ACC1400B64B8D /* vert_divider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D60C175ACC1400B64B8D /* vert_divider@2x.png */; };
 		66C5D63C175ACC6F00B64B8D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C5D63B175ACC6F00B64B8D /* Social.framework */; };
+		66C5D63E175ACD7200B64B8D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D63D175ACD7200B64B8D /* MainStoryboard.storyboard */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +218,7 @@
 		66C5D60B175ACC1400B64B8D /* vert_divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vert_divider.png; sourceTree = "<group>"; };
 		66C5D60C175ACC1400B64B8D /* vert_divider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vert_divider@2x.png"; sourceTree = "<group>"; };
 		66C5D63B175ACC6F00B64B8D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		66C5D63D175ACD7200B64B8D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -377,6 +379,7 @@
 		66C5D5A4175ACA0C00B64B8D /* James Code */ = {
 			isa = PBXGroup;
 			children = (
+				66C5D63D175ACD7200B64B8D /* MainStoryboard.storyboard */,
 				66C5D5CC175ACBE500B64B8D /* FullScreenViewController.h */,
 				66C5D5CD175ACBE500B64B8D /* FullScreenViewController.m */,
 				66C5D5CE175ACBE500B64B8D /* KSCustomPopoverBackgroundView.h */,
@@ -548,6 +551,7 @@
 				66C5D638175ACC1400B64B8D /* twitter_icon@2x.png in Resources */,
 				66C5D639175ACC1400B64B8D /* vert_divider.png in Resources */,
 				66C5D63A175ACC1400B64B8D /* vert_divider@2x.png in Resources */,
+				66C5D63E175ACD7200B64B8D /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
