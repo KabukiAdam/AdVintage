@@ -26,8 +26,9 @@
 @property (nonatomic,strong) UIImage *finalImage;
 @property (nonatomic,strong) NSString *adID;
 @property (nonatomic,strong) NSIndexPath *indexPath;
+@property (nonatomic) NSInteger contextID;
 @property (nonatomic,strong) NSMutableArray *images;
 
-- (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath;
+- (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath contextID:(NSInteger)contextID;
 
 @end

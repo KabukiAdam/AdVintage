@@ -30,9 +30,9 @@
 }
 
 
-- (void)startImageDownloadingForAdID:(NSString*)adID atIndexPath:(NSIndexPath *)indexPath {
+- (void)startImageDownloadingForAdID:(NSString*)adID atIndexPath:(NSIndexPath *)indexPath contextID:(NSInteger)contextID {
     if (![self.pendingOperations.downloadsInProgress.allKeys containsObject:indexPath]) {
-        SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:adID atIndexPath:indexPath];
+        SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:adID atIndexPath:indexPath contextID:contextID];
         [operation setDelegate:self];
         
         [pendingOperations.downloadsInProgress setObject:operation forKey:indexPath];
@@ -49,7 +49,7 @@
     
     for (NSDictionary *adDict in adArray) {
         if (![self.pendingOperations.downloadsInProgress.allKeys containsObject:[adDict objectForKey:@"indexPath"]]) {
-            SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:[adDict objectForKey:@"adID"] atIndexPath:[adDict objectForKey:@"indexPath"]];
+            SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:[adDict objectForKey:@"adID"] atIndexPath:[adDict objectForKey:@"indexPath"] contextID:[adDict objectForKey:@"contextID"]];
             [operation setDelegate:self];
             [operation setQueuePriority:NSOperationQueuePriorityVeryHigh];
             
@@ -64,12 +64,13 @@
     ////NSLog(@"AdImageOperationDidFinishWithAdID");
     UIImage *image = [operation finalImage];
     NSIndexPath *indexPath = [operation indexPath];
+    NSInteger contextID = [operation contextID];
     NSString *adID = [operation adID];
     NSError *error = [operation error];
     if (error != nil) {
         ////NSLog(@"Error: %d - %@", error.code, error.description);
     } else {
-        [delegate adImageManagerDidRetrieveImage:image forAdID:adID indexPath:indexPath];
+        [delegate adImageManagerDidRetrieveImage:image forAdID:adID indexPath:indexPath contextID:contextID];
         [pendingOperations.downloadsInProgress removeObjectForKey:indexPath];
     }
 }

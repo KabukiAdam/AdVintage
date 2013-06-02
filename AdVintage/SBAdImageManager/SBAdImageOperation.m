@@ -51,13 +51,14 @@
 @end
 
 @implementation SBAdImageOperation
-@synthesize adID, finalImage, delegate, indexPath, finished, images, imageCount;
+@synthesize adID, finalImage, delegate, indexPath, finished, images, imageCount, contextID;
 
-- (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath
+- (id)initWithAdID:(NSString *)newAdID atIndexPath:(NSIndexPath*)newIndexPath contextID:(NSInteger)newContextID
 {
     if( (self = [super init]) ) {
         adID = newAdID;
         indexPath = newIndexPath;
+        contextID = newContextID;
         NSLog(@"New Operation for AdID: %@",adID);
     }
     return self;
