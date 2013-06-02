@@ -8,6 +8,7 @@
 
 #import "ArticleLoader.h"
 #import "AFNetworking.h"
+#import "UtilClass.h"
 
 #define kTroveAPIKey @"e5grvpqht7bik0gs"
 #define kPublicationID 112
@@ -38,7 +39,7 @@
     return self.articleCache[@(index)];
 }
 
-- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy
+- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy contextID:(int)contextID
 {
     // break range into 100-size chunks
     int firstChunk = (range.location/100);
@@ -60,6 +61,12 @@
             AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
                                                  {
+                                                     if ([self.delegate respondsToSelector:@selector(getCurrentContextID)])
+                                                     {
+                                                         if ([self.delegate getCurrentContextID] != contextID)
+                                                             return;
+                                                     }
+                                                     
                                                      NSDictionary *js = (NSDictionary*)JSON;
                                                      NSArray *zone = (NSArray*)[js valueForKeyPath:@"response.zone"];
                                                      NSArray *articles = [(NSDictionary*)zone[0] valueForKeyPath:@"records.article"];
@@ -74,8 +81,8 @@
                                                          num++;
                                                      }
                                                      
-                                                     if ([self.delegate respondsToSelector:@selector(loadedArticleRange:)])
-                                                         [self.delegate loadedArticleRange:NSMakeRange(chunk*100, 100)];
+                                                     if ([self.delegate respondsToSelector:@selector(loadedArticleRange:contextID:)])
+                                                         [self.delegate loadedArticleRange:NSMakeRange(chunk*100, 100) contextID:contextID];
                                                  }
                                                                                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error , id JSON) { NSLog(@"FAILURE %@", error); }
                                                  ];
@@ -123,6 +130,8 @@
         case SBSearchCategoryWomen:
             searchTerms = @[@"wife",@"housewife",@"woman",@"girl",@"marriage"];
             break;
+        case SBSearchCategoryEntertainment:
+            break;
         case SBSearchCategoryAll:
             searchTerms = @[@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics",@"food",@"health",@"household",@"men",@"tobacco",@"transport",@"women"];
             break;
@@ -138,6 +147,13 @@
     }
     NSLog(@"SearchString: %@",searchString);
     return searchString;
+}
+
+- (void)emptyArticles
+{
+    _numArticles = 0;
+    [self.pendingChunks removeAllObjects];
+    [self.articleCache removeAllObjects];
 }
 
 @end

@@ -10,15 +10,6 @@
 #import "UtilClass.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface MenuViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *background;
-@property (weak, nonatomic) IBOutlet UIImageView *divider;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
-- (IBAction)selectCategory:(UIButton *)sender;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *iconButtons;
-
-
-@end
 
 @implementation MenuViewController
 
@@ -37,24 +28,32 @@
 	self.background.image = [UIImage imageNamed:@"popover_bg.png"];
     
     self.divider.image = [[UIImage imageNamed:@"divider"]stretchableImageWithLeftCapWidth:0 topCapHeight:4];
-    NSLog(@"%@",self.currentCategory);
     
     
-    for (UIButton *button in self.buttons) {
-        NSString *title = [self categories][button.tag-1];
+    for (UIButton *button in self.buttons)
+    {
+        NSString *title = [self nameForButtonTag:button.tag];
         [button setTitle:title forState:UIControlStateNormal];
         button.titleLabel.font = [UtilClass appFontWithSize:24];
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        if ([self.currentCategory isEqualToString:button.titleLabel.text]) {
+        if ([[UtilClass stringForCategory:self.currentCategory] isEqualToString:button.titleLabel.text])
+        {
             button.selected = YES;
         }
+        
+        [button addTarget:self action:@selector(selectCategory:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    for (UIButton *button in self.iconButtons) {
+    for (UIButton *button in self.iconButtons)
+    {
         button.backgroundColor = [UIColor clearColor];
-        NSString *imageString = [NSString stringWithFormat:@"caticon_%@.png",[[self categories][button.tag-1]stringByReplacingOccurrencesOfString:@" " withString:@"_"]];
+        NSString *imageString = [NSString stringWithFormat:@"caticon_%@.png",[[self nameForButtonTag:button.tag] stringByReplacingOccurrencesOfString:@" " withString:@"_"]];
         [button setBackgroundImage:[UIImage imageNamed:imageString] forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(selectCategory:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    self.contentSizeForViewInPopover = self.view.bounds.size;
     
 }
 
@@ -65,33 +64,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)selectCategory:(UIButton *)sender {
-    NSString *category = [self categories][sender.tag-1];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeCategory" object:category];
+- (IBAction)selectCategory:(UIButton *)sender
+{
+    NSNumber *category = [self categories][sender.tag-1];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeCategory" object:category];
 }
 
--(NSArray*)categories {
-    NSArray *unsortedArray = @[@"food",
-                               @"health",
-                               @"electronics",
-                               @"household",
-                               @"men",
-                               @"tobacco",
-                               @"women",
-                               @"alcohol",
-                               @"children",
-                               @"transport",
-                               @"entertainment",
-                               @"cleaning",
-                               @"clothing"
-                               ];
+-(NSArray*)categories
+{
+    NSArray *sortedArray = @[@(SBSearchCategoryAll),
+                             @(SBSearchCategoryAlcohol),
+                             @(SBSearchCategoryChildren),
+                             @(SBSearchCategoryCleaning),
+                             @(SBSearchCategoryClothing),
+                             @(SBSearchCategoryElectronics),
+                             @(SBSearchCategoryEntertainment),
+                             @(SBSearchCategoryFood),
+                             @(SBSearchCategoryHealth),
+                             @(SBSearchCategoryHousehold),
+                             @(SBSearchCategoryMen),
+                             @(SBSearchCategoryTobacco),
+                             @(SBSearchCategoryTransport),
+                             @(SBSearchCategoryWomen),
+                             @(SBSearchCategoryFavourites)
+                             ];
 
-    NSMutableArray *sortedArray = [[unsortedArray sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]mutableCopy];
-
-    [sortedArray insertObject:@"all categories" atIndex:0];
-    [sortedArray addObject:@"favourites"];
+//    NSMutableArray *sortedArray = [[unsortedArray sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]mutableCopy];
+//
+//    [sortedArray insertObject:@"all categories" atIndex:0];
+//    [sortedArray addObject:@"favourites"];
 
     return sortedArray;
+}
+
+-(NSString *)nameForButtonTag:(int)tag
+{
+    NSArray *catArray = [self categories];
+    NSNumber *catNumber = catArray[tag-1];
+    SBSearchCategory cat = [catNumber intValue];
+    return [UtilClass stringForCategory:cat];
 }
 
 

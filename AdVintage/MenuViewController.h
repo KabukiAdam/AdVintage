@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UtilClass.h"
+
 
 @interface MenuViewController : UIViewController
-@property (nonatomic, strong) NSString *currentCategory;
+
+@property (weak, nonatomic) IBOutlet UIImageView *background;
+@property (weak, nonatomic) IBOutlet UIImageView *divider;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+
+- (IBAction)selectCategory:(UIButton *)sender;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *iconButtons;
+
+@property (nonatomic, assign) SBSearchCategory currentCategory;
+
 @end

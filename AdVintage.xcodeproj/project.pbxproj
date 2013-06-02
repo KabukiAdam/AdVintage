@@ -121,6 +121,7 @@
 		66C5D6D8175AD6BE00B64B8D /* NixieOne-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D5175AD6BE00B64B8D /* NixieOne-Regular.otf */; };
 		66C5D6D9175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D6175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf */; };
 		66C5D6DA175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6D7175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf */; };
+		66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */; };
 		F4307B49175A343800D1009C /* SBAdPartialImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */; };
 		F4B7A516175AD42E008B65BF /* FullScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */; };
 /* End PBXBuildFile section */
@@ -275,6 +276,7 @@
 		66C5D6D5175AD6BE00B64B8D /* NixieOne-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NixieOne-Regular.otf"; sourceTree = "<group>"; };
 		66C5D6D6175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Bold.ttf"; sourceTree = "<group>"; };
 		66C5D6D7175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OleoScriptSwashCaps-Regular.ttf"; sourceTree = "<group>"; };
+		66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		F4307B47175A343800D1009C /* SBAdPartialImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAdPartialImageOperation.h; sourceTree = "<group>"; };
 		F4307B48175A343800D1009C /* SBAdPartialImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAdPartialImageOperation.m; sourceTree = "<group>"; };
 		F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenViewController.xib; sourceTree = "<group>"; };
@@ -349,6 +351,8 @@
 				F4B7A515175AD42E008B65BF /* FullScreenViewController.xib */,
 				668E7EC61759C2DD000C2CBA /* UICollectionViewWaterfallLayout.h */,
 				668E7EC71759C2DD000C2CBA /* UICollectionViewWaterfallLayout.m */,
+				66C5D5D4175ACBE500B64B8D /* UtilClass.h */,
+				66C5D5D5175ACBE500B64B8D /* UtilClass.m */,
 				66C5D5DE175ACBEB00B64B8D /* Resources */,
 				668E7EAA1759A3C6000C2CBA /* Supporting Files */,
 			);
@@ -444,10 +448,9 @@
 				66C5D5CF175ACBE500B64B8D /* KSCustomPopoverBackgroundView.m */,
 				66C5D5D0175ACBE500B64B8D /* MenuViewController.h */,
 				66C5D5D1175ACBE500B64B8D /* MenuViewController.m */,
+				66C5D6DB175ADC7700B64B8D /* MenuViewController.xib */,
 				66C5D5D2175ACBE500B64B8D /* Spinner.h */,
 				66C5D5D3175ACBE500B64B8D /* Spinner.m */,
-				66C5D5D4175ACBE500B64B8D /* UtilClass.h */,
-				66C5D5D5175ACBE500B64B8D /* UtilClass.m */,
 				66C5D5D6175ACBE500B64B8D /* ViewController.h */,
 				66C5D5D7175ACBE500B64B8D /* ViewController.m */,
 			);
@@ -666,6 +669,7 @@
 				66C5D6D8175AD6BE00B64B8D /* NixieOne-Regular.otf in Resources */,
 				66C5D6D9175AD6BE00B64B8D /* OleoScriptSwashCaps-Bold.ttf in Resources */,
 				66C5D6DA175AD6BE00B64B8D /* OleoScriptSwashCaps-Regular.ttf in Resources */,
+				66C5D6DC175ADC7700B64B8D /* MenuViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

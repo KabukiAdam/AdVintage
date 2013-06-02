@@ -8,31 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Article.h"
+#import "UtilClass.h"
 
 //food",@"health",@"household",@"men",@"tobacco",@"transport",@"women",@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics"
-
-enum {
-    SBSearchCategoryAlcohol,
-    SBSearchCategoryChildren,
-    SBSearchCategoryClassified,
-    SBSearchCategoryCleaning,
-    SBSearchCategoryClothing,
-    SBSearchCategoryElectronics,
-    SBSearchCategoryFood,
-    SBSearchCategoryHealth,
-    SBSearchCategoryHousehold,
-    SBSearchCategoryMen,
-    SBSearchCategoryTobacco,
-    SBSearchCategoryTransport,
-    SBSearchCategoryWomen,
-    SBSearchCategoryAll
-};
-typedef NSInteger SBSearchCategory;
 
 
 @protocol ArticleLoaderDelegate <NSObject>
 
-- (void)loadedArticleRange:(NSRange)range;
+- (void)loadedArticleRange:(NSRange)range contextID:(int)contextID;
+- (int)getCurrentContextID;
 
 @end
 
@@ -45,6 +29,7 @@ typedef NSInteger SBSearchCategory;
 @property (nonatomic, readonly) int numArticles;
 
 - (Article *)getArticleByIndex:(int)index;
-- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy;
+- (void)loadArticleRange:(NSRange)range withSearchCategory:(SBSearchCategory)searchCategory sortBy:(NSString*)sortBy contextID:(int)contextID;
+- (void)emptyArticles;
 
 @end

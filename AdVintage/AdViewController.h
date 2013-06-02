@@ -10,16 +10,23 @@
 #import "UICollectionViewWaterfallLayout.h"
 #import "ArticleLoader.h"
 #import "SBAdImageManager.h"
-
+#import "UtilClass.h"
 
 @interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate, SBAdImageManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *titleBarView;
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
+
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *collectionLayout;
-
-- (IBAction)buttonPressedCategory:(id)sender;
+@property (strong, nonatomic) UIPopoverController *menuPopoverController;
 @property (strong, nonatomic) ArticleLoader *articleLoader;
 @property (strong, nonatomic) SBAdImageManager *imageManager;
+@property (assign, nonatomic) SBSearchCategory currentCategory;
+
+@property (assign, nonatomic) int contextID;
+
+- (IBAction)buttonPressedCategory:(id)sender;
+
+
 @end

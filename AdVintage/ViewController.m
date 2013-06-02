@@ -78,17 +78,19 @@
     [self.view addSubview:articleView];
 }
 
-- (IBAction)showMenu:(UIButton *)sender {
-    MenuViewController *menuViewCont = [self.storyboard instantiateViewControllerWithIdentifier:@"menu"];
-    menuViewCont.currentCategory = self.menuBtn.titleLabel.text;
-    
-    self.menuPopoverController = [[UIPopoverController alloc]initWithContentViewController:menuViewCont];
-    self.menuPopoverController.popoverBackgroundViewClass = [KSCustomPopoverBackgroundView class];
-    
-    [self.menuPopoverController presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+- (IBAction)showMenu:(UIButton *)sender
+{
+//    MenuViewController *menuViewCont = [self.storyboard instantiateViewControllerWithIdentifier:@"menu"];
+//    menuViewCont.currentCategory = self.menuBtn.titleLabel.text;
+//    
+//    self.menuPopoverController = [[UIPopoverController alloc]initWithContentViewController:menuViewCont];
+//    self.menuPopoverController.popoverBackgroundViewClass = [KSCustomPopoverBackgroundView class];
+//    
+//    [self.menuPopoverController presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
--(void)changeCategory:(NSNotification *)notification {
+-(void)changeCategory:(NSNotification *)notification
+{
     [self.menuBtn setTitle:notification.object forState:UIControlStateNormal];
     [self.menuPopoverController dismissPopoverAnimated:YES];
 

@@ -11,6 +11,10 @@
 #import "ArticleCell.h"
 #import "AdImageCache.h"
 #import "FullScreenViewController.h"
+#import "UtilClass.h"
+#import "MenuViewController.h"
+#import "KSCustomPopoverBackgroundView.h"
+
 
 #define LOAD_ROW_MARGIN 50
 #define LOAD_IMAGE_ROW_MARGIN 10
@@ -25,7 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentCategory = SBSearchCategoryAll;
+    self.contextID = 0;
+    
 	self.view.backgroundColor = [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1];
+    self.categoryButton.titleLabel.font = [UtilClass appFontWithSize:24];
     
     // create collection layout
     self.collectionLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -42,14 +50,12 @@
     [self.view sendSubviewToBack:self.collectionView];
     
     
-    
     // register for cell creation
     [self.collectionView registerClass:[ArticleCell class] forCellWithReuseIdentifier:@"AD_CELL"];
     
     // start article loading
     self.articleLoader = [[ArticleLoader alloc] init];
     self.articleLoader.delegate = self;
-    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:SBSearchCategoryHealth sortBy:@"dateasc"];
     
     self.imageManager = [[SBAdImageManager alloc] init];
     self.imageManager.delegate = self;
@@ -57,7 +63,11 @@
     // scroll inset
     float bottomTitleBar = self.titleBarView.frame.origin.y+self.titleBarView.frame.size.height;
     self.collectionView.contentInset = UIEdgeInsetsMake(bottomTitleBar + self.collectionLayout.minimumLineSpacing, 0, 0, 0);;
-    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(bottomTitleBar, 0, 0, 0);;
+    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(bottomTitleBar, 0, 0, 0);
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeCategoryNotification:) name:@"changeCategory" object:nil];
+    
+    [self changeCategory:self.currentCategory];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +88,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self configureCellSize];
+    [self.menuPopoverController dismissPopoverAnimated:NO];
 }
 
 - (void)configureCellSize
@@ -87,6 +97,54 @@
     float height = roundf(width*1.3);
     self.collectionLayout.itemSize = CGSizeMake(width, height);
 }
+
+-(void)changeCategoryNotification:(NSNotification *)notification
+{
+    SBSearchCategory newCat = [(NSNumber*)notification.object intValue];
+    [self changeCategory:newCat];
+}
+
+-(void)changeCategory:(SBSearchCategory)category
+{
+    if (category == self.currentCategory)
+        return;
+    
+    self.contextID++;
+    self.currentCategory = category;
+    
+    [self.categoryButton setTitle:[UtilClass stringForCategory:category] forState:UIControlStateNormal];
+    [self.menuPopoverController dismissPopoverAnimated:YES];
+    
+    [self resizeMenuButton];
+    
+    [self.articleLoader emptyArticles];
+    [self.collectionView reloadData];
+    
+    [self.articleLoader loadArticleRange:NSMakeRange(0, 100) withSearchCategory:self.currentCategory sortBy:@"dateasc" contextID:self.contextID];
+}
+
+-(void)resizeMenuButton
+{
+    CGRect frame = self.categoryButton.frame;
+    
+    [self.categoryButton sizeToFit];
+    CGRect newFrame = self.categoryButton.frame;
+    
+    self.categoryButton.frame = CGRectMake((frame.origin.x+frame.size.width)-newFrame.size.width,frame.origin.y,newFrame.size.width,frame.size.height);
+}
+
+- (IBAction)buttonPressedCategory:(UIButton *)sender
+{
+    MenuViewController *menu = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    menu.currentCategory = self.currentCategory;
+    
+    self.menuPopoverController = [[UIPopoverController alloc] initWithContentViewController:menu];
+    self.menuPopoverController.popoverBackgroundViewClass = [KSCustomPopoverBackgroundView class];
+    
+    [self.menuPopoverController presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+
 
 #pragma mark - UICollectionViewDelegate Methods
 
@@ -149,7 +207,7 @@
     int highestToLoad = MIN(highestRow+LOAD_ROW_MARGIN, self.articleLoader.numArticles-1);
     //NSLog(@"scrollViewDidScroll (%d)", highestToLoad);
     
-    [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryHealth sortBy:@"dateasc"];
+    [self.articleLoader loadArticleRange:NSMakeRange(highestToLoad, LOAD_ROW_MARGIN) withSearchCategory:SBSearchCategoryHealth sortBy:@"dateasc" contextID:self.contextID];
     
     // load visible images as needed
     int lowestImageToLoad = MAX(lowestRow-LOAD_IMAGE_ROW_MARGIN,0);
@@ -198,8 +256,11 @@
 
 #pragma mark - ArticleLoader delegate
 
-- (void)loadedArticleRange:(NSRange)range
+- (void)loadedArticleRange:(NSRange)range contextID:(int)contextID
 {
+    if (contextID != self.contextID)    // ignore old contexts
+        return;
+    
     if ([self.collectionView numberOfItemsInSection:0] == 0)
         [self.collectionView reloadData];
     else
@@ -224,6 +285,12 @@
     }
 }
 
+- (int)getCurrentContextID
+{
+    return self.contextID;
+}
+
+
 
 #pragma mark - Image Loader delegate
 - (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath
@@ -240,6 +307,4 @@
     }
 }
 
-- (IBAction)buttonPressedCategory:(id)sender {
-}
 @end

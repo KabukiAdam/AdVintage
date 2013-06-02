@@ -14,7 +14,28 @@
 #define ORANGE [UIColor colorWithRed:0.933 green:0.612 blue:0.306 alpha:1] /*#ee9c4e*/
 #define BEIGE [UIColor colorWithRed:0.929 green:0.894 blue:0.855 alpha:1] /*#ede4da*/
 
-+(UIFont *)appFontWithSize:(int)size;
+enum {
+    SBSearchCategoryAlcohol,
+    SBSearchCategoryChildren,
+    SBSearchCategoryClassified,
+    SBSearchCategoryCleaning,
+    SBSearchCategoryClothing,
+    SBSearchCategoryElectronics,
+    SBSearchCategoryFood,
+    SBSearchCategoryHealth,
+    SBSearchCategoryHousehold,
+    SBSearchCategoryMen,
+    SBSearchCategoryTobacco,
+    SBSearchCategoryTransport,
+    SBSearchCategoryWomen,
+    SBSearchCategoryEntertainment,
+    SBSearchCategoryAll,
+    SBSearchCategoryFavourites,
+    SBSearchCategoryNumCategories
+};
+typedef NSInteger SBSearchCategory;
 
++(UIFont *)appFontWithSize:(int)size;
++(NSString*)stringForCategory:(SBSearchCategory)category;
 
 @end
