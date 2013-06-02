@@ -114,6 +114,7 @@
     
     if (self.currentCategory != SBSearchCategoryFavourites)
     {
+        self.progressView.hidden = NO;
         [self.articleLoader emptyArticles];
         [self.collectionView reloadData];
         
@@ -291,6 +292,7 @@
     
     if ([self.collectionView numberOfItemsInSection:0] == 0)
     {
+        self.progressView.hidden = YES;
         [self.collectionView reloadData];
         [self handleScrollPositionUpdate];
     }

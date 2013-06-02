@@ -11,11 +11,14 @@
 #import "ArticleLoader.h"
 #import "SBAdImageManager.h"
 #import "UtilClass.h"
+#import "Spinner.h"
 
 @interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate, SBAdImageManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *titleBarView;
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
+@property (weak, nonatomic) IBOutlet UIView *progressView;
+
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *collectionLayout;
