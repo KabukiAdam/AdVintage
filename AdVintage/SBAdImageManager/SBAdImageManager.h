@@ -25,7 +25,7 @@
 @property (nonatomic, weak) id <SBAdImageManagerDelegate> delegate;
 @property (nonatomic, strong) SBPendingOperations *pendingOperations;
 
-- (void)startImageDownloadingForAdID:(NSString*)adID atIndexPath:(NSIndexPath *)indexPath;
+- (void)startImageDownloadingForAdID:(NSString*)adID atIndexPath:(NSIndexPath *)indexPath contextID:(NSInteger)contextID;
 
 /*
     Expects an Array of NSDictionary

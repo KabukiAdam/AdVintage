@@ -225,7 +225,8 @@
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                 [imagesToLoad addObject:@{
                  @"indexPath":indexPath,
-                 @"adID":[NSString stringWithFormat:@"%d",article.articleID]
+                 @"adID":[NSString stringWithFormat:@"%d",article.articleID],
+                 @"contextID":@(self.contextID)
                  }];
                 NSLog(@"********** IMAGETOLOAD %d (%d)", article.articleID, i);
             }
@@ -298,7 +299,7 @@
 
 
 #pragma mark - Image Loader delegate
-- (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath
+- (void)adImageManagerDidRetrieveImage:(UIImage*)image forAdID:(NSString*)adID indexPath:(NSIndexPath*)indexPath contextID:(NSInteger)contextID
 {
     NSLog(@"---------- LOADEDIMAGE %@ (%d)", adID, indexPath.row);
     
@@ -307,8 +308,11 @@
     {
         [AdImageCache cacheImage:image forArticleID:article.articleID];
         
-        ArticleCell *cell = (ArticleCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-        [cell setImage:image];
+        if (contextID == self.contextID)
+        {
+            ArticleCell *cell = (ArticleCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+            [cell setImage:image];
+        }
     }
 }
 

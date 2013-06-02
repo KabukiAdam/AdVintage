@@ -49,7 +49,7 @@
     
     for (NSDictionary *adDict in adArray) {
         if (![self.pendingOperations.downloadsInProgress.allKeys containsObject:[adDict objectForKey:@"indexPath"]]) {
-            SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:[adDict objectForKey:@"adID"] atIndexPath:[adDict objectForKey:@"indexPath"] contextID:[adDict objectForKey:@"contextID"]];
+            SBAdImageOperation *operation = [[SBAdImageOperation alloc] initWithAdID:[adDict objectForKey:@"adID"] atIndexPath:[adDict objectForKey:@"indexPath"] contextID:[(NSNumber*)[adDict objectForKey:@"contextID"] integerValue]];
             [operation setDelegate:self];
             [operation setQueuePriority:NSOperationQueuePriorityVeryHigh];
             
