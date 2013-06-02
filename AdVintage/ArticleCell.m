@@ -11,6 +11,7 @@
 #import "ArticleCell.h"
 #import "Article.h"
 #import "AdImageCache.h"
+#import "UtilClass.h"
 
 
 #define BORDER_WIDTH 4
@@ -34,7 +35,15 @@
         self.borderView.autoresizesSubviews = YES;
         self.borderView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.borderView];
-                
+        
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectInset(bounds, BORDER_WIDTH, BORDER_WIDTH)];
+        [_titleLabel setFont:[UtilClass appFontWithSize:20.0f]];
+        [_titleLabel setTextColor:[UIColor darkGrayColor]];
+        [_titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_titleLabel setBackgroundColor:[UIColor clearColor]];
+        [_titleLabel setNumberOfLines:0];
+        [self.borderView addSubview:_titleLabel];
+        
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectInset(bounds, BORDER_WIDTH, BORDER_WIDTH)];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self.borderView addSubview:self.imageView];
@@ -47,13 +56,23 @@
     UIImage *image = [AdImageCache imageForArticleID:article.articleID];
     if (image)
     {
+        [self setUserInteractionEnabled:YES];
         self.imageView.image = image;
+        [_titleLabel setHidden:YES];
         [self layoutImageViews];
     }
     else
     {
+        [self setUserInteractionEnabled:NO];
         self.imageView.image = nil;
-        self.borderView.frame = self.bounds;
+        self.borderView.frame = CGRectInset(self.bounds, BORDER_WIDTH*2, BORDER_WIDTH*2);
+        
+        // Hack the title...
+        NSString *title = article.title;
+        if ([article.title isEqualToString:@"The Australian Women's Weekly (1933 - 1982)"]) title = @"Australian Women's Weekly";
+        
+        [_titleLabel setHidden:NO];
+        [_titleLabel setText:[NSString stringWithFormat:@"%@\n%@\n%@",title,@"National",[article getNiceDate]]];
     }
 }
 
