@@ -37,7 +37,7 @@
         self.borderView.autoresizesSubviews = YES;
         self.borderView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.borderView];
-        
+                
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectInset(bounds, BORDER_WIDTH, BORDER_WIDTH)];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self.borderView addSubview:self.imageView];
@@ -106,7 +106,5 @@
             NSLog(@"");
     }
 }
-
-
 
 @end

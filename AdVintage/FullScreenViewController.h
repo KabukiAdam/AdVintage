@@ -12,6 +12,10 @@
 
 @interface FullScreenViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
+@property (weak, nonatomic) IBOutlet UIView *infoView;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
 
 
 @end
