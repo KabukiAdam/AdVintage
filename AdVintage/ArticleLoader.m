@@ -101,36 +101,46 @@
     NSArray *searchTerms;
     switch (searchCategory) {
         case SBSearchCategoryAlcohol:
-            searchTerms = @[@"alcohol",@"beer",@"wine",@"spirits",@"liquor"];
+            searchTerms = @[@"alcohol",@"beer",@"wine",@"spirits",@"liquor",@"whisky",@"gin"];
             break;
         case SBSearchCategoryChildren:
             searchTerms = @[@"child",@"children",@"parent"];
             break;
         case SBSearchCategoryClassified:
+            searchTerms = @[@"classifieds",@"classified"];
             break;
         case SBSearchCategoryCleaning:
+            searchTerms = @[@"cleaning",@"ironing",@"sweeping",@"washing",@"housework",@"mopping"];
             break;
         case SBSearchCategoryClothing:
+            searchTerms = @[@"fashion"];
             break;
         case SBSearchCategoryElectronics:
+            searchTerms = @[@"refrigerator",@"sewing machine",@"blender",@"stove",@"oven",@"vacuum cleaner",@"electric",@"radio",@"TV",@"television",@"bulb",@"cool box"];
             break;
         case SBSearchCategoryFood:
+            searchTerms = @[@"food"];
             break;
         case SBSearchCategoryHealth:
             searchTerms = @[@"medicine",@"health",@"hospital",@"doctor",@"sick",@"disease",@"illness",@"sickness",@"nurse"];
             break;
         case SBSearchCategoryHousehold:
+            searchTerms = @[@"household"];
             break;
         case SBSearchCategoryMen:
+            searchTerms = @[@"men",@"man",@"father",@"husband"];
             break;
         case SBSearchCategoryTobacco:
+            searchTerms = @[@"tobacco",@"cigarette",@"cigarettes",@"smokes",@"smoke",@"smoker",@"smoking",@"cigar",@"fags"];
             break;
         case SBSearchCategoryTransport:
+            searchTerms = @[@"Transport",@"car",@"bus",@"truck",@"bicycle",@"ship",@"travel",@"trip",@"overseas",@"Aeroplane",@"airplane",@"port",@"road",@"cruise",@"journey",@"holidays",@"airship",@"blimp"];
             break;
         case SBSearchCategoryWomen:
             searchTerms = @[@"wife",@"housewife",@"woman",@"girl",@"marriage"];
             break;
         case SBSearchCategoryEntertainment:
+            searchTerms = @[@"flicks",@"movies",@"movie",@"film",@"musician",@"music",@"dancing",@"hollywood",@"broadway"];
             break;
         case SBSearchCategoryAll:
             searchTerms = @[@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics",@"food",@"health",@"household",@"men",@"tobacco",@"transport",@"women"];
