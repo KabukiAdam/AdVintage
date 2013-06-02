@@ -37,6 +37,7 @@
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView.clipsToBounds = NO;
     [self.view addSubview:self.collectionView];
+    [self.view sendSubviewToBack:self.collectionView];
     
     // register for cell creation
     [self.collectionView registerClass:[ArticleCell class] forCellWithReuseIdentifier:@"AD_CELL"];
@@ -48,6 +49,11 @@
     
     self.imageManager = [[SBAdImageManager alloc] init];
     self.imageManager.delegate = self;
+    
+    // scroll inset
+    float bottomTitleBar = self.titleBarView.frame.origin.y+self.titleBarView.frame.size.height;
+    self.collectionView.contentInset = UIEdgeInsetsMake(bottomTitleBar + self.collectionLayout.minimumLineSpacing, 0, 0, 0);;
+    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(bottomTitleBar, 0, 0, 0);;
 }
 
 - (void)didReceiveMemoryWarning
@@ -222,4 +228,6 @@
     }
 }
 
+- (IBAction)buttonPressedCategory:(id)sender {
+}
 @end

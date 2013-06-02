@@ -14,9 +14,12 @@
 
 @interface AdViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, ArticleLoaderDelegate, SBAdImageManagerDelegate>
 
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionLayout;
+@property (weak, nonatomic) IBOutlet UIView *titleBarView;
+@property (weak, nonatomic) IBOutlet UIButton *categoryButton;
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *collectionLayout;
 
+- (IBAction)buttonPressedCategory:(id)sender;
 @property (strong, nonatomic) ArticleLoader *articleLoader;
 @property (strong, nonatomic) SBAdImageManager *imageManager;
 @end
