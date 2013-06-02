@@ -264,7 +264,10 @@
         return;
     
     if ([self.collectionView numberOfItemsInSection:0] == 0)
+    {
         [self.collectionView reloadData];
+        [self handleScrollPositionUpdate];
+    }
     else
     {
         int highestRow = 0;
