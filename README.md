@@ -11,3 +11,6 @@ Trove is an incredibly rich store of Australian history. Among a huge array of d
 AdVintage is all about discovery. Where traditional "search apps" give users a clear start and end point, AdVintage is built to encourage exploration and discovery. It encourages questions. How have health concerns changed over time? The role of women? Attitudes towards work, home, family, and society? The iPad is a perfect device for this kind of casual discovery. Technically, AdVintage employs some powerful, custom techniques to encourage this kind of exploration - most notably, an innovative grid-based system for fitting ads of all shapes and sizes onto the screen, dynamically constructed and filled in real time as search results are returned. Under the hood, the app constantly retrieves new content in order to stay ahead of even the most inquisitive user.
 
 AdVintage. Whiter whites and brighter colours, guaranteed.
+
+
+Licensing: GPL v2
