@@ -137,13 +137,13 @@
             searchTerms = @[@"Transport",@"car",@"bus",@"truck",@"bicycle",@"ship",@"travel",@"trip",@"overseas",@"Aeroplane",@"airplane",@"port",@"road",@"cruise",@"journey",@"holidays",@"airship",@"blimp"];
             break;
         case SBSearchCategoryWomen:
-            searchTerms = @[@"wife",@"housewife",@"woman",@"girl",@"marriage"];
+            searchTerms = @[@"wife",@"housewife",@"woman",@"girl",@"girls",@"marriage",@"she",@"women",@"ladies",@"lady"];
             break;
         case SBSearchCategoryEntertainment:
             searchTerms = @[@"flicks",@"movies",@"movie",@"film",@"musician",@"music",@"dancing",@"hollywood",@"broadway"];
             break;
         case SBSearchCategoryAll:
-            searchTerms = @[@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics",@"food",@"health",@"household",@"men",@"tobacco",@"transport",@"women"];
+            searchTerms = @[@"alcohol",@"children",@"classified",@"cleaning",@"clothing",@"electronics",@"food",@"health",@"household",@"men",@"tobacco",@"transport",@"women",@"she",@"wife",@"husband",@"father",@"travel",@"medicine",@"sick",@"hospital",@"doctor",@"fashion",@"housework",@"parent",@"beer",@"wine",@"liquor"];
             break;
         default:
             break;
